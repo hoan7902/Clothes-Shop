@@ -1,0 +1,13 @@
+.textHeader {
+    color: #444;
+    font-size: 1.2rem;
+}
+
+.wrapImage{
+    min-width: 80px;
+    padding-bottom: 30%;
+    position: relative;
+    width: 17%;
+    /* height: auto; */
+    font-size: 100%;
+}
