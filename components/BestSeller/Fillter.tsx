@@ -1,7 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import Category from "./Category";
+import { useRouter } from 'next/router'
+import { GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 
-const Fillter = () => {
+
+const Fillter = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+
   return (
     <Box width="25%" maxWidth="305px" mr="24px">
       <Typography
@@ -18,6 +22,7 @@ const Fillter = () => {
       <Box>
         <Category
           title="Danh mục"
+          queryName="categories"
           itemList={[
             { name: "Đầm", id: 1 },
             { name: "Áo", id: 2 },
@@ -26,90 +31,24 @@ const Fillter = () => {
             { name: "Jumpsuit", id: 5 },
             { name: "Áo dài", id: 6 },
             { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
           ]}
         />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
+
       </Box>
     </Box>
   );
 };
+type Data = {}
+export const getServerSideProps: GetServerSideProps<{ data: Data }> = async () => {
+  console.log("tai k bit lam")
+  const res = await fetch('https://.../data')
+  const data: Data = await res.json()
 
+  return {
+    props: {
+      data,
+    },
+  }
+}
 export default Fillter;
+
