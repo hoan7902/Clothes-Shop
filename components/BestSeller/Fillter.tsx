@@ -1,11 +1,13 @@
 import { Box, Typography } from "@mui/material";
 import Category from "./Category";
-import { useRouter } from 'next/router'
-import { GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import { useRouter } from "next/router";
+import {
+  InferGetStaticPropsType,
+  GetStaticProps,
+} from "next";
 
-
-const Fillter = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-
+const Fillter = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log(posts, "ajaj")
   return (
     <Box width="25%" maxWidth="305px" mr="24px">
       <Typography
@@ -33,22 +35,26 @@ const Fillter = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
             { name: "Đầm", id: 7 },
           ]}
         />
-
       </Box>
     </Box>
   );
 };
-type Data = {}
-export const getServerSideProps: GetServerSideProps<{ data: Data }> = async () => {
-  console.log("tai k bit lam")
-  const res = await fetch('https://.../data')
-  const data: Data = await res.json()
+type Post = {
+  userId: string
+  id: string
+  title: string
+  completed: string
+}
+export const getStaticProps: GetStaticProps<{ posts: Post[] }> = async (
+  context
+) => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos')
+  const posts: Post[] = await res.json()
 
   return {
     props: {
-      data,
+      posts,
     },
   }
 }
 export default Fillter;
-
