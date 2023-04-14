@@ -12,7 +12,7 @@ export default function Checkout() {
     <>
       <Layout>
         <Box className="container">
-          <Typography className={styles.title}>Giỏ hàng</Typography>
+          <Typography sx={{ paddingBottom: { xs: "1rem", md: "5rem"}}} className={styles.title}>Giỏ hàng</Typography>
           <OrderItem />
         </Box>
       </Layout>
