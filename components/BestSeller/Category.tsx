@@ -9,6 +9,7 @@ import {
   ListItem,
   IconButton,
 } from "@mui/material";
+import Tooltip from '@mui/material/Tooltip';
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import RemoveIcon from "@mui/icons-material/Remove";
 import StarBorder from "@mui/icons-material/StarBorder";
@@ -18,6 +19,7 @@ import Checkbox from "@mui/material/Checkbox";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styles from "./style.module.css"
 import { useRouter } from "next/router";
+import { CategoryTyp } from "@/pages/best-seller";
 const theme = createTheme({
   status: {
     danger: "#e53e3e",
@@ -66,7 +68,7 @@ declare module "@mui/material/styles" {
 interface CategoryProps {
   title: string;
   queryName: string;
-  itemList: Array<{ name: string; id: number }>;
+  itemList: CategoryTyp[];
 }
 
 const Category = ({ title, queryName, itemList }: CategoryProps): JSX.Element => {
@@ -79,7 +81,7 @@ const Category = ({ title, queryName, itemList }: CategoryProps): JSX.Element =>
   const navigateSearch = (newChecked: Array<number>) => {
     if (newChecked.length != 0) {
 
-      const arrStr = newChecked.map(num => num.toString()).join('%2C');
+      const arrStr = newChecked.map(num => num.toString()).join(',');
       router.push({
         pathname: router.pathname,
         query: {
@@ -99,6 +101,7 @@ const Category = ({ title, queryName, itemList }: CategoryProps): JSX.Element =>
   }
   const [checked, setChecked] = useState([-1]);
   const handleToggle = (value: number) => () => {
+
     let currentIndex;
     if (checked.length !== 0)
       currentIndex = checked.indexOf(value);
@@ -159,13 +162,13 @@ const Category = ({ title, queryName, itemList }: CategoryProps): JSX.Element =>
             sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
           >
             {itemList.map((category) => {
-              const labelId = `checkbox-list-${title}-${category.id}`;
-
+              const labelId = `checkbox-list-${title}-${category.categoryId}`;
               return (
-                <ListItem key={category.id} disablePadding>
+                // <Tooltip disableHoverListener title={category.description}>
+                <ListItem key={parseInt(category.categoryId)} disablePadding>
                   <ListItemButton
                     role={undefined}
-                    onClick={handleToggle(category.id)}
+                    onClick={handleToggle(parseInt(category.categoryId))}
                     sx={
                       {
                         paddingBlock: "0"
@@ -176,26 +179,28 @@ const Category = ({ title, queryName, itemList }: CategoryProps): JSX.Element =>
                       <Checkbox
                         size="small"
                         edge="start"
-                        checked={checked.indexOf(category.id) !== -1}
+                        checked={checked.indexOf(parseInt(category.categoryId)) !== -1}
                         tabIndex={-1}
                         disableRipple
                         inputProps={{ "aria-labelledby": labelId }}
                       />
                     </ListItemIcon>
-                    <ListItemText
-                      id={labelId}
-                      primary={`${category.name}`}
-                      primaryTypographyProps={{
-                        fontSize: "14px",
-                        fontWeight: 100,
-                        lineHeight: "20px",
-                        marginLeft: "8px",
-                        maxWidth: "260px",
-                        // color: "rgb(68,68,68)",
-                        color: "rgb(68,68,68)",
-                        textTransform: "capitalize"
-                      }}
-                    />
+                    <Tooltip disableFocusListener disableTouchListener title={category.description} placement="bottom">
+                      <ListItemText
+                        id={labelId}
+                        primary={`${category.name}`}
+                        primaryTypographyProps={{
+                          fontSize: "14px",
+                          fontWeight: 100,
+                          lineHeight: "20px",
+                          marginLeft: "8px",
+                          maxWidth: "260px",
+                          // color: "rgb(68,68,68)",
+                          color: "rgb(68,68,68)",
+                          textTransform: "capitalize"
+                        }}
+                      />
+                    </Tooltip>
                   </ListItemButton>
                 </ListItem>
               );

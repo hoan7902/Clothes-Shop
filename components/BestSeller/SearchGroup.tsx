@@ -4,6 +4,7 @@ import { useState } from "react";
 const SearchGroup = () => {
   const [selected, setSelected] = useState("")
   const router = useRouter();
+
   function handleSortByDefault() {
     let page = router.query.page;
     delete router.query.page;
@@ -84,13 +85,13 @@ const SearchGroup = () => {
               borderRadius: "0.01",
               bgcolor: selected === title ? "rgb(173,37,38)" : "white",
               color: selected === title ? "white" : "black",
-              border: "1px solid rgb(68,68,68)",
+              border: "1px solid transparent",
               fontSize: { xs: "0.4rem", sm: "0.7rem" },
+              boxShadow: "rgba(33,33,33,0.2) 0 0 11px 0px",
               "&:hover": {
                 bgcolor: "rgb(173,37,38)",
                 color: "white",
-                border: "1px solid rgb(173,37,38)",
-                boxShadow: "rgba(33,33,33,0.2) 0 0 11px 0px",
+                border: "1px solid transparent",
                 opacity: "0.8",
               },
             }}

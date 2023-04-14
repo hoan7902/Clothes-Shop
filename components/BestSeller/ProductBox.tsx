@@ -24,7 +24,7 @@ const ProductBox = ({ images, name, price }: ProductBoxProps) => {
                         backgroundPosition: "center",
                         transition: "all 0.3s ease",
                         "&:hover": {
-                            backgroundImage: `url(${images[1]})`,
+                            backgroundImage: `url(${images[images.length - 1]})`,
                         },
                     }}
                     style={{
