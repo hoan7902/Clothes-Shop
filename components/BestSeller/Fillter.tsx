@@ -1,12 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import Category from "./Category";
-<<<<<<< HEAD
 import { useRouter } from "next/router";
-import {
-  GetStaticProps,
-} from "next";
+import { GetStaticProps } from "next";
 import { CategoryTyp } from "@/pages/best-seller";
-
 
 // export const getStaticProps: GetStaticProps<{ posts: Post[] }> = async (
 //   context
@@ -29,10 +25,6 @@ import { CategoryTyp } from "@/pages/best-seller";
 //   }
 // }
 const Fillter = ({ categories }: { categories: CategoryTyp[] }) => {
-=======
-
-const Fillter = () => {
->>>>>>> 99184d73775b7d0e22fd511781ed9db7f0ec4fc2
   return (
     <Box width="25%" maxWidth="305px" mr="24px">
       <Typography
@@ -49,99 +41,8 @@ const Fillter = () => {
       <Box>
         <Category
           title="Danh mục"
-<<<<<<< HEAD
           queryName="categories"
           itemList={categories}
-=======
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
-        />
-        <Category
-          title="Danh mục"
-          itemList={[
-            { name: "Đầm", id: 1 },
-            { name: "Áo", id: 2 },
-            { name: "Chân váy", id: 3 },
-            { name: "Áo khoác", id: 4 },
-            { name: "Jumpsuit", id: 5 },
-            { name: "Áo dài", id: 6 },
-            { name: "Đầm", id: 7 },
-            { name: "Đầm", id: 8 },
-          ]}
->>>>>>> 99184d73775b7d0e22fd511781ed9db7f0ec4fc2
         />
       </Box>
     </Box>
