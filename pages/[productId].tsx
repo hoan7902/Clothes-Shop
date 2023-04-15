@@ -8,7 +8,7 @@ import { getProduct, getProducts } from "./api";
 import { GetStaticProps } from "next";
 
 const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
-  console.log("productInfo", productInfo);
+
   return (
     <Layout>
       <Box
@@ -48,12 +48,10 @@ export default Items;
 export const getStaticProps: GetStaticProps<{
   productInfo: ProductInfoTyp;
 }> = async (context) => {
-  console.log("productid getStaticProps", context);
   let res = null;
   if (context !== undefined && context.params !== undefined) {
     res = (await getProduct(context.params.productId)).data;
   }
-  console.log("productid getStaticProps Res", res);
 
   return {
     props: {
@@ -63,7 +61,6 @@ export const getStaticProps: GetStaticProps<{
 };
 export async function getStaticPaths() {
   const result = await getProducts("");
-  console.log("getStaticPaths: ", result.data);
 
   const paths = result.data.data.map((product: ProductTyp) => ({
     params: { productId: product.productId.toString() },

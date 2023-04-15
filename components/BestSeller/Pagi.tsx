@@ -11,7 +11,6 @@ const Pagi = ({ total }: PagiProps) => {
   const router = useRouter();
   const currentPath = router.pathname;
   const query = router.query;
-  console.log("pagi ", total);
   const handlePageChange = (e: React.ChangeEvent<unknown>, page: number) => {
     setPage(page);
 

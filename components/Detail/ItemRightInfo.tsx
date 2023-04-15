@@ -29,7 +29,6 @@ const ItemRightInfo = ({
   sizes: Array<{ price: string; quantity: string; sizeName: string }>;
 }) => {
   const [selectedItem, setSelectedItem] = useState(0);
-  console.log("ItemRightInfo", sizes);
   return (
     <Box width={"66.6667%"} paddingLeft={"100px"} marginTop={"10px"}>
       <Typography

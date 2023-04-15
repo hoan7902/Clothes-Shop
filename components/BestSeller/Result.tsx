@@ -44,7 +44,6 @@ const Result = ({ title, setTotal }: ResultProps) => {
 
   const fetchData = async (query: any) => {
     const result = await getProducts(query);
-    console.log("check res: ", result.data);
     setAllProduct(result.data.data);
     let limit;
     if (router.query.limit && typeof router.query.limit == "string")
@@ -58,8 +57,6 @@ const Result = ({ title, setTotal }: ResultProps) => {
     fetchData(router.query);
   }, [router.query]);
 
-  // const result = getProducts(router.query);
-  // console.log("Result", result)
   return (
     <Box width={"74%"} maxWidth={"74%"}>
       <Title title="sản phẩm bán chạy" />
