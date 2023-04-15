@@ -37,9 +37,9 @@ const Login: React.FC<Props> = ({
   const handleLogin = async () => {
     const response = await loginUser(JSON.stringify({ email, password }));
     if (response) {
-      setOpenNoti(true);
       setStatusAlert("success");
       setMessageAlert("Đăng nhập thành công");
+      setOpenNoti(true);
       setOpen(false);
       localStorage.setItem("user", JSON.stringify(response));
     } else {
@@ -105,3 +105,69 @@ const Login: React.FC<Props> = ({
 };
 
 export default Login;
+
+export const Info: React.FC<Props> = ({
+  setOpen,
+  setOpenNoti,
+  setStatusAlert,
+  setMessageAlert,
+}) => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+
+  const handleLogin = async () => {
+    // const response = await loginUser(JSON.stringify({ email, password }));
+    // if (response) {
+    //   setOpenNoti(true);
+    //   setStatusAlert("success");
+    //   setMessageAlert("Đăng nhập thành công");
+    //   setOpen(false);
+    //   localStorage.setItem("user", JSON.stringify(response));
+    // } else {
+    //   setStatusAlert("error");
+    //   setMessageAlert("Thiếu hoặc sai thông tin");
+    //   setOpenNoti(true);
+    // }
+  };
+
+  return (
+    <Stack className={styles.form}>
+      <Stack alignItems="center">
+        <Stack
+          className={styles.wrapInput}
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <input
+            className={styles.input}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Nhập họ tên"
+            name="name"
+            type="text"
+          />
+        </Stack>
+      </Stack>
+      <Stack alignItems="center">
+        <Stack
+          className={styles.wrapInput}
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <input
+            className={styles.input}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Nhập email"
+            name="email"
+            type={"text"}
+          />
+        </Stack>
+
+        <button onClick={handleLogin} className={styles.buttonLogin}>
+          Gửi
+        </button>
+      </Stack>
+    </Stack>
+  );
+};

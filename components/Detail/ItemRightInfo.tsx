@@ -56,14 +56,22 @@ const ItemRightInfo = ({
         <CodeSection codeNum={productId} />
       </Stack>
 
-      <SizeSection sizes={sizes} />
+      <SizeSection
+        selected={selectedItem}
+        setSelected={setSelectedItem}
+        sizes={sizes}
+      />
       <Divider
         orientation="horizontal"
         flexItem
         sx={{ borderLeft: "0.05px solid black" }}
       ></Divider>
       <MoreInfo />
-      <ItemAction sizes={sizes} />
+      <ItemAction
+        productId={productId}
+        selectedItem={selectedItem}
+        sizes={sizes}
+      />
     </Box>
   );
 };

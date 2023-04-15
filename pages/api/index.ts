@@ -41,3 +41,8 @@ export const getProduct = async(productId: any )=>{
     const response = await API.get(`/api/product/${productId}`);
     return response;
 }
+export const addtoCart = async(productId: any )=>{
+  console.log(`/api/cart/${productId}`)
+  const response = await API.post(`/api/cart/${productId}`);
+  return response;
+}

@@ -13,12 +13,13 @@ import Link from "next/link";
 
 const MoreInfo = () => {
   return (
-    <Box display="flex" paddingY={"27px"}>
+    <Box display="flex" paddingY={"27px"} gap={"100px"}>
       <Stack
         width={"40%"}
         alignItems={"center"}
         paddingX={"15px"}
         rowGap={"20px"}
+        marginLeft={"35px"}
       >
         <AddCardIcon fontSize="large" />
         <Typography

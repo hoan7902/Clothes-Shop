@@ -1,13 +1,16 @@
 import { Box, Typography, Stack, Button, Divider } from "@mui/material";
 import CheckroomIcon from "@mui/icons-material/Checkroom";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Tooltip from "@mui/material/Tooltip";
 const SizeSection = ({
+  selected,
+  setSelected,
   sizes,
 }: {
+  selected: number;
+  setSelected: Dispatch<SetStateAction<number>>;
   sizes: Array<{ price: string; quantity: string; sizeName: string }>;
 }) => {
-  const [selected, setSelected] = useState(0);
   const sizeList = sizes.map((size) => size.sizeName);
   return (
     <Box>
@@ -46,6 +49,9 @@ const SizeSection = ({
                 sizes.filter((element) => element.sizeName === "S")[0]?.quantity
               } sản phẩm`}
               arrow
+              sx={{
+                cursor: "pointer",
+              }}
             >
               <Button
                 variant="outlined"
@@ -61,7 +67,7 @@ const SizeSection = ({
                     sizes.filter((element) => element.sizeName === "S")[0]
                       ?.quantity == "0"
                       ? "none"
-                      : "default",
+                      : "pointer",
                   cursor: !sizeList.includes("S") ? "not-allowed" : "default",
                   color: sizes[selected].sizeName == "S" ? "white" : "black",
                   background:
@@ -103,8 +109,8 @@ const SizeSection = ({
                     sizes.filter((element) => element.sizeName === "M")[0]
                       ?.quantity == "0"
                       ? "not-allowed"
-                      : "default",
-                  pointerEvents: !sizeList.includes("M") ? "none" : "default",
+                      : "pointer",
+                  pointerEvents: !sizeList.includes("M") ? "none" : "pointer",
                   border: "1px solid black",
                   width: "fit-content",
                   "&:hover": {
@@ -145,8 +151,8 @@ const SizeSection = ({
                     sizes.filter((element) => element.sizeName === "L")[0]
                       ?.quantity == "0"
                       ? "not-allowed"
-                      : "default",
-                  pointerEvents: !sizeList.includes("L") ? "none" : "default",
+                      : "pointer",
+                  pointerEvents: !sizeList.includes("L") ? "none" : "pointer",
                   border: "1px solid black",
                   width: "fit-content",
                   "&:hover": {
