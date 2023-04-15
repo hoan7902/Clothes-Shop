@@ -50,7 +50,7 @@ const Result = ({ title, setTotal }: ResultProps) => {
     if (router.query.limit && typeof router.query.limit == "string")
       limit = parseInt(router.query.limit);
     else limit = 24;
-    setTotal(Math.ceil(result.data.count / limit));
+    setTotal(Math.floor(result.data.count / limit) + 1);
     return result;
   };
 
