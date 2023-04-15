@@ -6,7 +6,7 @@ import {
   sliderClasses,
 } from "@mui/material";
 import { useState } from "react";
-const ItemLeftInfo = () => {
+const ItemLeftInfo = ({ images }: { images: string[] }) => {
   const [selectedItem, setSelectedItem] = useState(0);
   function scrollToTop() {
     window.scrollTo({
