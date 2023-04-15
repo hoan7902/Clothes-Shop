@@ -7,26 +7,34 @@ import Breadcrumb from "@/components/BestSeller/Breadscrumb";
 import Fillter from "@/components/BestSeller/Fillter";
 import Result from "@/components/BestSeller/Result";
 import Pagi from "@/components/BestSeller/Pagi";
-import {
-  GetStaticProps,
-} from "next";
+import { GetStaticProps } from "next";
 import { getCategories } from "./api";
 import { useState } from "react";
 
 export type CategoryTyp = {
-  categoryId: string
-  name: string
-  description: string
-}
+  categoryId: string;
+  name: string;
+  description: string;
+};
 
-export default function BestSeller({ categories }: { categories: CategoryTyp[] }) {
-  const [totalPage, setTotalPage] = useState(0)
+export default function BestSeller({
+  categories,
+}: {
+  categories: CategoryTyp[];
+}) {
+  const [totalPage, setTotalPage] = useState(0);
   return (
     <>
       <Layout>
         <Box
           mt="85px"
-          maxWidth={{ xs: "540px", sm: "800px", md: "1000px", lg: "1500px", xl: "1567px" }}
+          maxWidth={{
+            xs: "540px",
+            sm: "800px",
+            md: "1000px",
+            lg: "1500px",
+            xl: "1567px",
+          }}
           mx="auto"
           pb="3rem"
         >
@@ -42,16 +50,15 @@ export default function BestSeller({ categories }: { categories: CategoryTyp[] }
   );
 }
 
-export const getStaticProps: GetStaticProps<{ categories: CategoryTyp[] }> = async (
-  context
-) => {
-  const res = (await getCategories()).data.categories
-  console.log(res)
-
+export const getStaticProps: GetStaticProps<{
+  categories: CategoryTyp[];
+}> = async (context) => {
+  const res = (await getCategories()).data.categories;
+  console.log(res);
 
   return {
     props: {
-      categories: res
+      categories: res,
     },
-  }
-}
+  };
+};

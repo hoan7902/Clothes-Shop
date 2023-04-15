@@ -9,7 +9,7 @@ import {
   ListItem,
   IconButton,
 } from "@mui/material";
-import Tooltip from '@mui/material/Tooltip';
+import Tooltip from "@mui/material/Tooltip";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import RemoveIcon from "@mui/icons-material/Remove";
 import StarBorder from "@mui/icons-material/StarBorder";
@@ -17,7 +17,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 import { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import styles from "./style.module.css"
+import styles from "./style.module.css";
 import { useRouter } from "next/router";
 import { CategoryTyp } from "@/pages/best-seller";
 const theme = createTheme({
@@ -71,7 +71,11 @@ interface CategoryProps {
   itemList: CategoryTyp[];
 }
 
-const Category = ({ title, queryName, itemList }: CategoryProps): JSX.Element => {
+const Category = ({
+  title,
+  queryName,
+  itemList,
+}: CategoryProps): JSX.Element => {
   const [open, setOpen] = useState(true);
   const router = useRouter();
   const handleClick = () => {
@@ -80,31 +84,29 @@ const Category = ({ title, queryName, itemList }: CategoryProps): JSX.Element =>
 
   const navigateSearch = (newChecked: Array<number>) => {
     if (newChecked.length != 0) {
-
-      const arrStr = newChecked.map(num => num.toString()).join(',');
+      const arrStr = newChecked.map((num) => num.toString()).join(",");
       router.push({
         pathname: router.pathname,
         query: {
-          ...router.query, [queryName]: arrStr
+          ...router.query,
+          [queryName]: arrStr,
         },
       });
-    }
-    else {
+    } else {
       let page = router.query[queryName];
       delete router.query[queryName];
       router.push({
-        pathname: router.pathname, query: {
-          ...router.query
+        pathname: router.pathname,
+        query: {
+          ...router.query,
         },
-      })
+      });
     }
-  }
+  };
   const [checked, setChecked] = useState([-1]);
   const handleToggle = (value: number) => () => {
-
     let currentIndex;
-    if (checked.length !== 0)
-      currentIndex = checked.indexOf(value);
+    if (checked.length !== 0) currentIndex = checked.indexOf(value);
     else currentIndex = -1;
     const newChecked = [...checked];
 
@@ -114,10 +116,10 @@ const Category = ({ title, queryName, itemList }: CategoryProps): JSX.Element =>
       newChecked.splice(currentIndex, 1);
     }
     const newArr = newChecked.filter((value) => {
-      return value !== -1
-    })
+      return value !== -1;
+    });
     setChecked(newArr);
-    navigateSearch(newArr)
+    navigateSearch(newArr);
   };
   return (
     <ThemeProvider theme={theme}>
@@ -139,13 +141,9 @@ const Category = ({ title, queryName, itemList }: CategoryProps): JSX.Element =>
             }}
           >
             {open ? (
-              <RemoveIcon fontSize="small"
-                className={styles.rmvIcon}
-              />
+              <RemoveIcon fontSize="small" className={styles.rmvIcon} />
             ) : (
-              <AddOutlinedIcon fontSize="small"
-                className={styles.addIcon}
-              />
+              <AddOutlinedIcon fontSize="small" className={styles.addIcon} />
             )}
           </ListItemIcon>
           <ListItemText
@@ -169,23 +167,33 @@ const Category = ({ title, queryName, itemList }: CategoryProps): JSX.Element =>
                   <ListItemButton
                     role={undefined}
                     onClick={handleToggle(parseInt(category.categoryId))}
-                    sx={
-                      {
-                        paddingBlock: "0"
-                      }
-                    }
+                    sx={{
+                      paddingBlock: "0",
+                    }}
                   >
-                    <ListItemIcon sx={{ height: "16px", minWidth: { xs: "5px", sm: "20px" } }}>
+                    <ListItemIcon
+                      sx={{
+                        height: "16px",
+                        minWidth: { xs: "5px", sm: "20px" },
+                      }}
+                    >
                       <Checkbox
                         size="small"
                         edge="start"
-                        checked={checked.indexOf(parseInt(category.categoryId)) !== -1}
+                        checked={
+                          checked.indexOf(parseInt(category.categoryId)) !== -1
+                        }
                         tabIndex={-1}
                         disableRipple
                         inputProps={{ "aria-labelledby": labelId }}
                       />
                     </ListItemIcon>
-                    <Tooltip disableFocusListener disableTouchListener title={category.description} placement="bottom">
+                    <Tooltip
+                      disableFocusListener
+                      disableTouchListener
+                      title={category.description}
+                      placement="bottom"
+                    >
                       <ListItemText
                         id={labelId}
                         primary={`${category.name}`}
@@ -197,7 +205,7 @@ const Category = ({ title, queryName, itemList }: CategoryProps): JSX.Element =>
                           maxWidth: "260px",
                           // color: "rgb(68,68,68)",
                           color: "rgb(68,68,68)",
-                          textTransform: "capitalize"
+                          textTransform: "capitalize",
                         }}
                       />
                     </Tooltip>

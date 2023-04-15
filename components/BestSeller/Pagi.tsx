@@ -1,26 +1,28 @@
-import Pagination from '@mui/material/Pagination';
-import { Box } from "@mui/material"
-import { useEffect, useState } from 'react';
+import Pagination from "@mui/material/Pagination";
+import { Box } from "@mui/material";
+import { useEffect, useState } from "react";
 interface PagiProps {
-    total: number,
+  total: number;
 }
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 const Pagi = ({ total }: PagiProps) => {
-    const [page, setPage] = useState(1);
-    const router = useRouter();
-    const currentPath = router.pathname;
-    const query = router.query;
-    console.log("pagi ", total)
-    const handlePageChange = (e: React.ChangeEvent<unknown>, page: number) => {
-        setPage(page);
+  const [page, setPage] = useState(1);
+  const router = useRouter();
+  const currentPath = router.pathname;
+  const query = router.query;
+  console.log("pagi ", total);
+  const handlePageChange = (e: React.ChangeEvent<unknown>, page: number) => {
+    setPage(page);
 
-        router.push({ pathname: currentPath, query: { ...query, page: page } });
-    };
-    return <Box display="flex" justifyContent={"center"} alignItems="center">
-        <Pagination count={total} size="large"
-            onChange={handlePageChange} />
-    </Box>;
-}
+    router.push({ pathname: currentPath, query: { ...query, page: page } });
+  };
+  return (
+    <Box display="flex" justifyContent={"center"} alignItems="center">
+      <Pagination count={total} size="large" onChange={handlePageChange} />
+    </Box>
+  );
+};
 
+export default Pagi;
 export default Pagi;
