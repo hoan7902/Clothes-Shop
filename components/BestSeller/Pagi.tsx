@@ -25,4 +25,3 @@ const Pagi = ({ total }: PagiProps) => {
 };
 
 export default Pagi;
-export default Pagi;
