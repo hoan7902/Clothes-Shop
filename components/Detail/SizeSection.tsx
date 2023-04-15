@@ -9,7 +9,6 @@ const SizeSection = ({
 }) => {
   const [selected, setSelected] = useState(0);
   const sizeList = sizes.map((size) => size.sizeName);
-  console.log("SizeSection ", sizeList);
   return (
     <Box>
       <Typography

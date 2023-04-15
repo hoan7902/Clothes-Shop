@@ -54,7 +54,6 @@ export const getStaticProps: GetStaticProps<{
   categories: CategoryTyp[];
 }> = async (context) => {
   const res = (await getCategories()).data.categories;
-  console.log(res);
 
   return {
     props: {

@@ -18,7 +18,6 @@ export const loginUser = async (dataForm: any) => {
 }
 
 export const addCategory = async(category: any) => {
-  console.log("check request: ", category)
   const response = await API.post("/api/category", category);
   return response;
 }
@@ -28,14 +27,10 @@ export const getCategories = async() => {
   return response;
 }
 export const getProducts = async(params:any )=>{
-    console.log("fetch data", params)
     const response = await API.get("/api/products",{ params: params });
-     console.log("haha", response.data)
     return response;
 }
 export const getProduct = async(productId:any )=>{
-    console.log("fetch product", `/api/product/${productId}`)
     const response = await API.get(`/api/product/${productId}`);
-     console.log("haha", response.data)
     return response;
 }
