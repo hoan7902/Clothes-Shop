@@ -12,25 +12,32 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const loginUser = async (dataForm: any) => {
+export const loginUser = async (dataForm: string) => {
   const response = await API.post("/api/user/login", dataForm);
   return response.data; 
 }
 
+export const signUpUser = async (dataForm: string) => {
+  const response = await API.post("/api/user/register", dataForm);
+  return response.data; 
+}
+
 export const addCategory = async(category: any) => {
-  const response = await API.post("/api/category", category);
-  return response;
+    const response = await API.post("/api/category", category);
+    return response;
 }
 
 export const getCategories = async() => {
   const response = await API.get("/api/categories");
   return response;
 }
-export const getProducts = async(params:any )=>{
+
+export const getProducts = async(params: any )=>{
     const response = await API.get("/api/products",{ params: params });
     return response;
 }
-export const getProduct = async(productId:any )=>{
+
+export const getProduct = async(productId: any )=>{
     const response = await API.get(`/api/product/${productId}`);
     return response;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Dialog,
@@ -10,6 +10,9 @@ import {
   Stack,
   Typography,
   Box,
+  Snackbar,
+  Alert,
+  AlertColor,
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import CloseIcon from "@mui/icons-material/Close";
@@ -20,6 +23,9 @@ import styles from "./styles.module.css";
 const Popup = (): JSX.Element => {
   const [open, setOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+  const [openNoti, setOpenNoti] = useState(false);
+  const [statusAlert, setStatusAlert] = useState<AlertColor>("success");
+  const [messageAlert, setMessageAlert] = useState("Cập nhật thành công");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -29,12 +35,29 @@ const Popup = (): JSX.Element => {
     setOpen(false);
   };
 
+  const handleCloseNoti = (
+    event: React.SyntheticEvent | Event | undefined = undefined,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenNoti(false);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleCloseNoti(undefined, "timeout");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [openNoti, handleCloseNoti]);
+
   return (
     <div>
       <IconButton style={{ marginRight: "20px" }} onClick={handleClickOpen}>
         <PersonIcon />
       </IconButton>
-      <Dialog  open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose}>
         <Box className={styles.wrapperPopup}>
           <DialogTitle>
             <Stack
@@ -42,7 +65,7 @@ const Popup = (): JSX.Element => {
               flexDirection="row"
               justifyContent="space-between"
               alignItems="center"
-              sx={{ display: { xs: "none", md: "flex"}}}
+              sx={{ display: { xs: "none", md: "flex" } }}
             >
               <Typography
                 padding="10px 100px"
@@ -52,7 +75,10 @@ const Popup = (): JSX.Element => {
               >
                 Tài Khoản
               </Typography>
-              <CloseIcon onClick={handleClose} sx={{ "&:hover": { cursor: "pointer"}}} />
+              <CloseIcon
+                onClick={handleClose}
+                sx={{ "&:hover": { cursor: "pointer" } }}
+              />
             </Stack>
             <Stack
               p="20px 0"
@@ -78,11 +104,39 @@ const Popup = (): JSX.Element => {
           </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              {isLogin ? <Login /> : <Signup />}
+              {isLogin ? (
+                <Login
+                  setOpen={setOpen}
+                  setOpenNoti={setOpenNoti}
+                  setStatusAlert={setStatusAlert}
+                  setMessageAlert={setMessageAlert}
+                />
+              ) : (
+                <Signup
+                  setOpen={setOpen}
+                  setOpenNoti={setOpenNoti}
+                  setStatusAlert={setStatusAlert}
+                  setMessageAlert={setMessageAlert}
+                  setIsLogin={setIsLogin}
+                />
+              )}
             </DialogContentText>
           </DialogContent>
         </Box>
       </Dialog>
+      <Snackbar
+        open={openNoti}
+        autoHideDuration={null}
+        onClose={handleCloseNoti}
+      >
+        <Alert
+          onClose={handleCloseNoti}
+          severity={statusAlert}
+          sx={{ width: "100%" }}
+        >
+          {messageAlert}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

@@ -29,7 +29,7 @@ const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
           width={{ xs: "100%", sm: "100%", md: "33.333%" }}
           bgcolor={"white"}
         >
-          <ItemLeftInfo />
+          <ItemLeftInfo images={productInfo.images} />
         </Box>
         <ItemRightInfo
           productId={productInfo.productId}
