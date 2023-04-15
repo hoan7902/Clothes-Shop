@@ -29,13 +29,13 @@ export const getCategories = async() => {
 }
 export const getProducts = async(params:any )=>{
     console.log("fetch data", params)
-    const response = await API.get("/api/products",{ params });
+    const response = await API.get("/api/products",{ params: params });
      console.log("haha", response.data)
     return response;
 }
-export const getProduct = async(params:any )=>{
-    console.log("fetch data", params)
-    const response = await API.get("/api/product",{ params });
+export const getProduct = async(productId:any )=>{
+    console.log("fetch product", `/api/product/${productId}`)
+    const response = await API.get(`/api/product/${productId}`);
      console.log("haha", response.data)
     return response;
 }

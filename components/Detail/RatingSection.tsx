@@ -10,10 +10,10 @@ import {
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-const RatingSection = ({ rate }: { rate: number }) => {
+const RatingSection = ({ num, point }: { num: string; point: string }) => {
   return (
     <Box display="flex">
-      <Rating name="read-only" value={4} readOnly />
+      <Rating name="read-only" value={parseInt(point)} readOnly />
       <Typography
         lineHeight={"22px"}
         fontWeight={"300px"}
@@ -21,7 +21,7 @@ const RatingSection = ({ rate }: { rate: number }) => {
         color="#c9c9c9"
         paddingLeft={"16px"}
       >
-        {rate.toString()} reviews
+        {num} reviews
       </Typography>
     </Box>
   );

@@ -15,8 +15,21 @@ import CodeSection from "./CodeSection";
 import SizeSection from "./SizeSection";
 import MoreInfo from "./MoreInfo";
 import ItemAction from "./ItemAction";
-const ItemRightInfo = () => {
+const ItemRightInfo = ({
+  name,
+  numberRating,
+  ratingPoint,
+  sizes,
+  productId,
+}: {
+  productId: string;
+  name: string;
+  numberRating: string;
+  ratingPoint: string;
+  sizes: Array<{ price: string; quantity: string; sizeName: string }>;
+}) => {
   const [selectedItem, setSelectedItem] = useState(0);
+  console.log("ItemRightInfo", sizes);
   return (
     <Box width={"66.6667%"} paddingLeft={"100px"} marginTop={"10px"}>
       <Typography
@@ -26,10 +39,10 @@ const ItemRightInfo = () => {
         fontWeight={400}
         paddingY={"30px"}
       >
-        Váy Nẹp Cổ Tay Lỡ 2VA01937XT - S
+        {name}
       </Typography>
       <Stack direction={"row"} gap={"20px"}>
-        <RatingSection rate={4} />
+        <RatingSection num={numberRating} point={ratingPoint} />
         <Divider
           orientation="vertical"
           flexItem
@@ -41,31 +54,17 @@ const ItemRightInfo = () => {
           flexItem
           sx={{ borderLeft: "0.05px solid black" }}
         ></Divider>
-        <CodeSection codeNum={"UCCASCKA1313wwd"} />
+        <CodeSection codeNum={productId} />
       </Stack>
-      <Typography
-        color={"#ad2526"}
-        fontSize={{ xs: "1rem", sm: "1.125rem", md: "1.5rem" }}
-        lineHeight={{ xs: "1.75rem", sm: "2rem" }}
-        letterSpacing={".1rem"}
-        fontWeight={500}
-        margin={"18px"}
-      >
-        31239190 đ
-      </Typography>
-      <Divider
-        orientation="horizontal"
-        flexItem
-        sx={{ borderLeft: "0.05px solid black" }}
-      ></Divider>
-      <SizeSection />
+
+      <SizeSection sizes={sizes} />
       <Divider
         orientation="horizontal"
         flexItem
         sx={{ borderLeft: "0.05px solid black" }}
       ></Divider>
       <MoreInfo />
-      <ItemAction />
+      <ItemAction sizes={sizes} />
     </Box>
   );
 };

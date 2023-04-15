@@ -5,117 +5,101 @@ import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import HouseboatIcon from "@mui/icons-material/Houseboat";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
-const ItemAction = () => {
+const ItemAction = ({
+  sizes,
+}: {
+  sizes: Array<{ price: string; quantity: string; sizeName: string }>;
+}) => {
+  const hasAvailableQuantity = sizes.some(
+    (element) => Number(element.quantity) > 0
+  );
+
   return (
     <Stack direction={"row"} gap={"20px"} width={"100%"}>
-      <Button
-        fullWidth
-        variant="outlined"
-        sx={{
-          height: "73px",
-          color: "black",
-          border: "1px solid black",
-          width: "fit-content",
-          "&:hover": {
-            background: "#ad2526",
-            color: "white",
-            border: "1px solid transparent",
-          },
-        }}
-        startIcon={<DeleteIcon />}
-      >
-        Delete
-      </Button>
-      <Button
-        fullWidth
-        variant="outlined"
-        startIcon={<AddShoppingCartIcon />}
-        sx={{
-          height: "73px",
-          color: "black",
-          border: "1px solid black",
-          width: "fit-content",
-          "&:hover": {
-            background: "#ad2526",
-            color: "white",
-            border: "1px solid transparent",
-          },
-        }}
-      >
-        Thêm vào giỏ hàng
-      </Button>
-      <Button
-        fullWidth
-        variant="outlined"
-        startIcon={<RemoveShoppingCartIcon />}
-        sx={{
-          height: "73px",
-          color: "black",
-          border: "1px solid black",
-          width: "fit-content",
-          "&:hover": {
-            background: "#ad2526",
-            color: "white",
-            border: "1px solid transparent",
-          },
-        }}
-      >
-        Tạm hết hàng
-      </Button>
-      <Button
-        fullWidth
-        variant="outlined"
-        startIcon={<HouseboatIcon />}
-        sx={{
-          height: "73px",
-          color: "black",
-          border: "1px solid black",
-          width: "fit-content",
-          "&:hover": {
-            background: "#ad2526",
-            color: "white",
-            border: "1px solid transparent",
-          },
-        }}
-      >
-        {} còn sản phẩm
-      </Button>
-      <Button
-        fullWidth
-        variant="outlined"
-        startIcon={<BusinessCenterIcon />}
-        sx={{
-          height: "73px",
-          color: "black",
-          border: "1px solid black",
-          width: "fit-content",
-          "&:hover": {
-            background: "#ad2526",
-            color: "white",
-            border: "1px solid transparent",
-          },
-        }}
-      >
-        Thông báo khi có hàng
-      </Button>
-      <Button
-        fullWidth
-        variant="outlined"
-        startIcon={<LocalAtmIcon />}
-        sx={{
-          height: "73px",
-          color: "black",
-          border: "1px solid black",
-          width: "fit-content",
-          "&:hover": {
-            background: "#ad2526",
-            color: "white",
-            border: "1px solid transparent",
-          },
-        }}
-      >
-        Mua ngay
-      </Button>
+      {hasAvailableQuantity && (
+        <Button
+          fullWidth
+          variant="outlined"
+          startIcon={<AddShoppingCartIcon />}
+          sx={{
+            minWidth: "500px",
+            height: "73px",
+            color: "black",
+            border: "1px solid black",
+            width: "fit-content",
+            "&:hover": {
+              background: "#ad2526",
+              color: "white",
+              border: "1px solid transparent",
+            },
+          }}
+        >
+          Thêm vào giỏ hàng
+        </Button>
+      )}
+      {!hasAvailableQuantity && (
+        <Button
+          fullWidth
+          variant="outlined"
+          startIcon={<RemoveShoppingCartIcon />}
+          sx={{
+            minWidth: "500px",
+            height: "73px",
+            color: "black",
+            border: "1px solid black",
+            width: "fit-content",
+            "&:hover": {
+              background: "#ad2526",
+              color: "white",
+              border: "1px solid transparent",
+            },
+          }}
+        >
+          Tạm hết hàng
+        </Button>
+      )}
+      {!hasAvailableQuantity && (
+        <Button
+          fullWidth
+          variant="outlined"
+          startIcon={<BusinessCenterIcon />}
+          sx={{
+            minWidth: "500px",
+            height: "73px",
+            color: "black",
+            border: "1px solid black",
+            width: "fit-content",
+            "&:hover": {
+              background: "#ad2526",
+              color: "white",
+              border: "1px solid transparent",
+            },
+          }}
+        >
+          Thông báo khi có hàng
+        </Button>
+      )}
+      {hasAvailableQuantity && (
+        <Button
+          fullWidth
+          variant="outlined"
+          startIcon={<LocalAtmIcon />}
+          sx={{
+            minWidth: "500px",
+            height: "73px",
+            color: "black",
+            border: "1px solid black",
+            width: "fit-content",
+            "&:hover": {
+              background: "#ad2526",
+              color: "white",
+              border: "1px solid transparent",
+            },
+          }}
+        >
+          Mua ngay
+        </Button>
+      )}
     </Stack>
   );
 };
