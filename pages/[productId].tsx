@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { getProduct, getProducts } from "./api";
 import { GetStaticProps } from "next";
 import RatingBox from "@/components/Detail/RatingBox";
+import CommentBox from "@/components/Detail/CommentBox";
 
 const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
   return (
@@ -43,6 +44,12 @@ const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
             sizes={productInfo.sizes}
           />
         </Box>
+        <Divider
+          orientation="horizontal"
+          flexItem
+          sx={{ borderLeft: "0.05px solid black" }}
+        ></Divider>
+        <CommentBox productId={productInfo.productId} />
         <Divider
           orientation="horizontal"
           flexItem

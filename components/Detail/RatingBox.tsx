@@ -29,7 +29,13 @@ const RatingBox = ({ productId }: { productId: string }) => {
   const [openNoti, setOpenNoti] = useState(false);
   const [statusAlert, setStatusAlert] = useState<AlertColor>("success");
   const [messageAlert, setMessageAlert] = useState("Cập nhật thành công");
-  const userStr = localStorage.getItem("user");
+  let userStr;
+  if (typeof localStorage !== "undefined") {
+    const userStr = localStorage?.getItem("user");
+    // Access localStorage here
+  } else {
+    // Handle the case where localStorage is not available
+  }
   let name = "";
   if (userStr) {
     const user = JSON.parse(userStr);

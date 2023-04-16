@@ -56,6 +56,11 @@ export const addRating = async(productId: any, params: any )=>{
   const response = await API.post(`/api/rating/${productId}`, params);
   return response;
 }
+export const getRating = async(productId: any )=>{
+  console.log(`/api/rating/${productId}`)
+  const response = await API.get(`/api/rating/${productId}`);
+  return response;
+}
 export const myCart = async()=>{
   console.log(`api/cart/my-cart`)
   const response = await API.get(`api/cart/my-cart`);
