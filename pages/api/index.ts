@@ -41,8 +41,28 @@ export const getProduct = async(productId: any )=>{
     const response = await API.get(`/api/product/${productId}`);
     return response;
 }
-export const addtoCart = async(productId: any )=>{
-  console.log(`/api/cart/${productId}`)
-  const response = await API.post(`/api/cart/${productId}`);
+export const addtoCart = async(productId: any,params:any )=>{
+  console.log(`/api/cart/${productId}`,params)
+  const response = await API.post(`/api/cart/${productId}`, params );
+  return response;
+}
+export const removeFromCart = async(productId: any,params:any )=>{
+  console.log(`delete /api/cart/${productId}/${params}`,params)
+  const response = await API.delete(`/api/cart/${productId}/${params}` );
+  return response;
+}
+export const addRating = async(productId: any, params: any )=>{
+  console.log(`/api/rating/${productId}`, params)
+  const response = await API.post(`/api/rating/${productId}`, params);
+  return response;
+}
+export const myCart = async()=>{
+  console.log(`api/cart/my-cart`)
+  const response = await API.get(`api/cart/my-cart`);
+  return response;
+}
+export const createAnOrder = async(params: any)=>{
+  console.log(`api/order/create`)
+  const response = await API.post(`api/order/create`,params);
   return response;
 }

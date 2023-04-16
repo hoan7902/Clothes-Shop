@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import Layout from "../components/Layout";
 import ItemLeftInfo from "@/components/Detail/ItemLeftInfo";
 import ItemRightInfo from "@/components/Detail/ItemRightInfo";
@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getProduct, getProducts } from "./api";
 import { GetStaticProps } from "next";
+import RatingBox from "@/components/Detail/RatingBox";
 
 const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
-
   return (
     <Layout>
       <Box
@@ -23,21 +23,32 @@ const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
         }}
         mx="auto"
         pb="3rem"
-        display="flex"
       >
         <Box
-          width={{ xs: "100%", sm: "100%", md: "33.333%" }}
-          bgcolor={"white"}
+          display="flex"
+          flexDirection={{ xs: "column", md: "row" }}
+          pb="3rem"
         >
-          <ItemLeftInfo images={productInfo.images} />
+          <Box
+            width={{ xs: "100%", sm: "100%", md: "33.333%" }}
+            bgcolor={"white"}
+          >
+            <ItemLeftInfo images={productInfo.images} />
+          </Box>
+          <ItemRightInfo
+            productId={productInfo.productId}
+            name={productInfo.name}
+            numberRating={productInfo.numberRating}
+            ratingPoint={productInfo.ratingPoint}
+            sizes={productInfo.sizes}
+          />
         </Box>
-        <ItemRightInfo
-          productId={productInfo.productId}
-          name={productInfo.name}
-          numberRating={productInfo.numberRating}
-          ratingPoint={productInfo.ratingPoint}
-          sizes={productInfo.sizes}
-        />
+        <Divider
+          orientation="horizontal"
+          flexItem
+          sx={{ borderLeft: "0.05px solid black" }}
+        ></Divider>
+        <RatingBox productId={productInfo.productId} />
       </Box>
     </Layout>
   );

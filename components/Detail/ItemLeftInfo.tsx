@@ -14,13 +14,18 @@ const ItemLeftInfo = ({ images }: { images: string[] }) => {
       behavior: "smooth",
     });
   }
-
+  console.log(images);
   return (
-    <Box>
+    <Box paddingX={{ xs: "10px", md: "0px" }}>
       <Box width={"100%"}>
-        <ImageListItem sx={{ width: "100%", cursor: "pointer" }}>
+        <ImageListItem
+          sx={{
+            width: "100%",
+            cursor: "pointer",
+          }}
+        >
           <img
-            src={items[selectedItem].src}
+            src={images[selectedItem]}
             alt={"Room"}
             style={{
               objectFit: "cover",
@@ -31,30 +36,34 @@ const ItemLeftInfo = ({ images }: { images: string[] }) => {
           />
         </ImageListItem>
         <ImageList
-          sx={{ width: "100%", marginTop: "18px" }}
+          sx={{
+            width: "100%",
+            marginTop: "18px",
+            // display: "flex",
+            // justifyContent: "center",
+            // flexGrow: "0",
+          }}
           cols={4}
           rowHeight={180}
           gap={20}
         >
-          {items.map((item, index) => {
+          {images.map((item, index) => {
             return (
               <ImageListItem
                 sx={{
-                  width: "100%",
                   border:
-                    selectedItem == item.id
-                      ? "1px solid #ad2526"
-                      : "transparent",
+                    selectedItem == index ? "1px solid #ad2526" : "transparent",
                   cursor: "pointer",
+                  flexGrow: "0",
                 }}
-                key={item.id}
+                key={index}
                 onClick={() => {
-                  setSelectedItem(item.id);
+                  setSelectedItem(index);
                   scrollToTop();
                 }}
               >
                 <img
-                  src={item.src}
+                  src={item}
                   alt={"itemref"}
                   loading="lazy"
                   style={{ objectFit: "cover" }}
@@ -67,22 +76,5 @@ const ItemLeftInfo = ({ images }: { images: string[] }) => {
     </Box>
   );
 };
-const items = [
-  {
-    id: 0,
-    src: "https://cdn.lep.vn/2022/07/images/products/1659070809046-2VA01937XT-01.jpeg",
-  },
-  {
-    id: 1,
-    src: "https://cdn.lep.vn/2022/07/images/products/1659070812434-2VA01937XT-02-(1).jpeg",
-  },
-  {
-    id: 2,
-    src: "https://cdn.lep.vn/2022/07/images/products/1659070815144-2VA01937XT-03.jpeg",
-  },
-  {
-    id: 3,
-    src: "https://cdn.lep.vn/2022/07/images/products/1659070818665-2VA01937XT-04.jpeg",
-  },
-];
+
 export default ItemLeftInfo;

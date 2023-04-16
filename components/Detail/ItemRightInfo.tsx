@@ -30,7 +30,11 @@ const ItemRightInfo = ({
 }) => {
   const [selectedItem, setSelectedItem] = useState(0);
   return (
-    <Box width={"66.6667%"} paddingLeft={"100px"} marginTop={"10px"}>
+    <Box
+      width={{ xs: "100%", sm: "100%", md: "66.667%" }}
+      paddingLeft={{ xs: "25px", md: "100px" }}
+      marginTop={"10px"}
+    >
       <Typography
         variant="h1"
         fontSize={{ xs: "1rem", sm: "1rem", md: "1.5rem" }}
@@ -40,14 +44,13 @@ const ItemRightInfo = ({
       >
         {name}
       </Typography>
-      <Stack direction={"row"} gap={"20px"}>
+      <Stack
+        direction={"row"}
+        gap={"20px"}
+        flexDirection={{ xs: "row", md: "row" }}
+      >
         <RatingSection num={numberRating} point={ratingPoint} />
-        <Divider
-          orientation="vertical"
-          flexItem
-          sx={{ borderLeft: "0.05px solid black" }}
-        ></Divider>
-        <LikeSection likeNum={4} />
+
         <Divider
           orientation="vertical"
           flexItem
@@ -72,6 +75,25 @@ const ItemRightInfo = ({
         selectedItem={selectedItem}
         sizes={sizes}
       />
+      <Box
+        position={"fixed"}
+        width={"100%"}
+        left={0}
+        bottom={0}
+        paddingTop={"5px"}
+        paddingBottom={"15px"}
+        paddingX={{ xs: "5px", sm: "20px", md: "10px" }}
+        zIndex={5}
+        sx={{
+          backgroundColor: "white",
+        }}
+      >
+        <ItemAction
+          productId={productId}
+          selectedItem={selectedItem}
+          sizes={sizes}
+        />
+      </Box>
     </Box>
   );
 };

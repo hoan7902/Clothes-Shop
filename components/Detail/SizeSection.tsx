@@ -2,6 +2,13 @@ import { Box, Typography, Stack, Button, Divider } from "@mui/material";
 import CheckroomIcon from "@mui/icons-material/Checkroom";
 import { Dispatch, SetStateAction, useState } from "react";
 import Tooltip from "@mui/material/Tooltip";
+
+export const formatNumber = function (number: string) {
+  const parts = number.split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return parts.join(".");
+};
+
 const SizeSection = ({
   selected,
   setSelected,
@@ -22,14 +29,19 @@ const SizeSection = ({
         fontWeight={500}
         margin={"18px"}
       >
-        {sizes[selected].price} đ
+        {formatNumber(sizes[selected].price)} đ
       </Typography>
       <Divider
         orientation="horizontal"
         flexItem
         sx={{ borderLeft: "0.05px solid black" }}
       ></Divider>
-      <Box display="flex" m={"24px 0px"}>
+      <Box
+        display="flex"
+        m={"24px 0px"}
+        gap={2}
+        flexDirection={{ xs: "column", md: "row" }}
+      >
         <Typography
           lineHeight={"22px"}
           fontWeight={"500px"}
@@ -38,12 +50,16 @@ const SizeSection = ({
           paddingLeft={"16px"}
           textTransform={"uppercase"}
           fontSize={"1.125rem"}
-          width={"16.66667%"}
         >
           size
         </Typography>
-        <Stack display="flex" width={"83.333333%"} justifyContent={"center"}>
-          <Stack direction={"row"} gap={"24px"} paddingBottom={"24px"}>
+        <Stack display="flex" justifyContent={"center"}>
+          <Stack
+            gap={"24px"}
+            paddingBottom={"24px"}
+            direction={{ xs: "row", md: "row" }}
+            alignSelf={"center"}
+          >
             <Tooltip
               title={`Còn ${
                 sizes.filter((element) => element.sizeName === "S")[0]?.quantity
@@ -181,6 +197,7 @@ const SizeSection = ({
               color: "black",
               border: "1px solid black",
               width: "fit-content",
+              alignSelf: "center",
               "&:hover": {
                 background: "#ad2526",
                 color: "white",

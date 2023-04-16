@@ -1,99 +1,235 @@
-import { Grid, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import {
+  Grid,
+  Stack,
+  Typography,
+  Box,
+  Snackbar,
+  Alert,
+  AlertColor,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-
-const OrderItem: React.FC = () => {
-  const [quantity, setQuantity] = useState(1);
-
-  const handleDecreaseQuantity = () => {
-    setQuantity(quantity - 1);
+import UserInfo from "../UserInfo";
+import { addtoCart, createAnOrder, myCart, removeFromCart } from "@/pages/api";
+import { formatNumber } from "@/components/Detail/SizeSection";
+import { error } from "console";
+import { useRouter } from "next/router";
+import { AuthDialog } from "@/components/Home/Popup";
+const OrderItem = () => {
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const [openNoti, setOpenNoti] = useState(false);
+  const [statusAlert, setStatusAlert] = useState<AlertColor>("success");
+  const [messageAlert, setMessageAlert] = useState("Cập nhật thành công");
+  const handleCloseNoti = (
+    event: React.SyntheticEvent | Event | undefined = undefined,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenNoti(false);
   };
 
-  const handleIncreaseQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-
+  const [carts, setCart] = useState([
+    {
+      cartId: "",
+      image: "",
+      name: "",
+      productId: "",
+      quantity: "",
+      size: "",
+      time: "",
+      unitPrice: "",
+      userId: "",
+    },
+  ]);
+  const [change, setChange] = useState(1);
+  useEffect(() => {
+    myCart()
+      .then((res) => {
+        console.log("Checkout", res.data.data);
+        setCart(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  }, [change]);
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [note, setNote] = useState("");
+  const [payment, setPayment] = useState("Cash");
+  console.log(address, phone, note, payment);
   return (
     <>
-      <Grid container borderBottom="0.5px solid #444" p="20px" justifyContent="center" alignItems="center">
+      <Grid
+        container
+        borderBottom="0.5px solid #444"
+        p="20px"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Grid className={styles.textHeader} xs={6}>
           Sản phẩm
         </Grid>
-        <Grid sx={{ display: { xs: "none", md: "block"}}} className={styles.textHeader} xs={2}>
+        <Grid
+          sx={{ display: { xs: "none", md: "block" } }}
+          className={styles.textHeader}
+          xs={2}
+        >
           Đơn giá
         </Grid>
-        <Grid sx={{ display: { xs: "none", md: "block"}}} className={styles.textHeader} xs={2}>
+        <Grid
+          sx={{ display: { xs: "none", md: "block" } }}
+          className={styles.textHeader}
+          xs={2}
+        >
           Số lượng
         </Grid>
-        <Grid sx={{ display: { xs: "none", md: "block"}}} className={styles.textHeader} xs={2}>
+        <Grid
+          sx={{ display: { xs: "none", md: "block" } }}
+          className={styles.textHeader}
+          xs={2}
+        >
           Số tiền
         </Grid>
       </Grid>
+      {carts.map((cart) => {
+        return (
+          <Grid
+            container
+            padding="25px"
+            borderBottom="0.5px solid #444"
+            p="20px"
+          >
+            <Grid md={6} xs={12}>
+              <Stack flexDirection="row">
+                <div className={styles.wrapImage}>
+                  <img width="100%" height="100%" src={cart.image} />
+                </div>
+                <Stack ml="30px">
+                  <Typography
+                    fontSize={{ xs: "1rem", md: "1.25rem" }}
+                    fontWeight="100"
+                    lineHeight="1.75rem"
+                    color="#444"
+                    marginBottom="12px"
+                  >
+                    {cart.name}
+                  </Typography>
+                  <Typography fontSize="1.1rem" fontWeight="400">
+                    Size {cart.size}
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Grid>
 
-      <Grid container padding="25px" borderBottom="0.5px solid #444" p="20px">
-        <Grid md={6} xs={12}>
-          <Stack flexDirection="row">
-            <div className={styles.wrapImage}>
-              <img
-                width="100%"
-                height="100%"
-                src="https://cdn.lep.vn/2022/09/images/products/1663057005975-1VA01940HO-compressed.jpeg"
-              />
-            </div>
-            <Stack ml="30px">
-              <Typography
-                fontSize="1.25rem"
-                fontWeight="100"
-                lineHeight="1.75rem"
-                color="#444"
-                marginBottom="12px"
-              >
-                Váy phối ren tùng xòe 1VA01940HO - S
-              </Typography>
+            <Grid sx={{ marginLeft: { xs: "20%", md: "0px" } }} xs={12} md={2}>
               <Typography fontSize="1.1rem" fontWeight="400">
-                Size S
+                {formatNumber(cart.unitPrice)}
               </Typography>
-            </Stack>
-          </Stack>
-        </Grid>
-
-        <Grid sx={{ marginLeft: {xs : "45%", md: "0px"}}} xs={12} md={2}>
-          <Typography fontSize="1.1rem" fontWeight="400">
-            795.000đ
-          </Typography>
-        </Grid>
-        <Grid sx={{ marginLeft: {xs : "37%", md: "0px"}}} xs={12} md={2}>
-          <Stack flexDirection="row" alignItems="center">
-            <button
-              onClick={handleDecreaseQuantity}
-              className={styles.buttonDecreaseQuantity}
+            </Grid>
+            <Grid sx={{ marginLeft: { xs: "37%", md: "0px" } }} xs={12} md={2}>
+              <Stack flexDirection="row" alignItems="center">
+                <button
+                  onClick={() => {
+                    addtoCart(
+                      cart.productId,
+                      JSON.stringify({
+                        size: cart.size,
+                        quantity: (parseInt(cart.quantity) - 1).toString(),
+                      })
+                    )
+                      .then((res) => {
+                        setChange(change + 1);
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
+                  }}
+                  className={styles.buttonDecreaseQuantity}
+                >
+                  -
+                </button>
+                <Typography fontSize="1.1rem" fontWeight="400">
+                  {cart.quantity}
+                </Typography>
+                <button
+                  onClick={() =>
+                    addtoCart(
+                      cart.productId,
+                      JSON.stringify({
+                        size: cart.size,
+                        quantity: (parseInt(cart.quantity) + 1).toString(),
+                      })
+                    )
+                      .then((res) => {
+                        setChange(change + 1);
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      })
+                  }
+                  className={styles.buttonIncreaseQuantity}
+                >
+                  +
+                </button>
+              </Stack>
+            </Grid>
+            <Grid
+              sx={{
+                marginLeft: { xs: "37%", md: "0px" },
+                display: { xs: "none", md: "block" },
+              }}
+              xs={12}
+              md={2}
             >
-              -
-            </button>
-            <Typography fontSize="1.1rem" fontWeight="400">
-              {quantity}
-            </Typography>
-            <button
-              onClick={handleIncreaseQuantity}
-              className={styles.buttonIncreaseQuantity}
-            >
-              +
-            </button>
-          </Stack>
-        </Grid>
-        <Grid sx={{ marginLeft: {xs : "37%", md: "0px"}, display: { xs: "none", md: "block"}}} xs={12} md={2}>
-          <Stack flexDirection="row" alignItems="center">
-            <Typography fontSize="1.1rem" fontWeight="400" color="#9f1110">
-              795.000đ
-            </Typography>
-            <button className={styles.buttonErase}>Xóa</button>
-          </Stack>
-        </Grid>
-      </Grid>
+              <Stack flexDirection="row" alignItems="center">
+                <Typography fontSize="1.1rem" fontWeight="400" color="#9f1110">
+                  {formatNumber(
+                    (
+                      parseInt(cart.quantity) * parseInt(cart.unitPrice)
+                    ).toString()
+                  )}
+                </Typography>
+                <button
+                  className={styles.buttonErase}
+                  onClick={() => {
+                    removeFromCart(cart.productId, cart.size)
+                      .then((res) => {
+                        setChange(change + 1);
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
+                  }}
+                >
+                  Xóa
+                </button>
+              </Stack>
+            </Grid>
+          </Grid>
+        );
+      })}
 
-      <Stack flexDirection="row" justifyContent="flex-end" m="40px 0">
+      <Stack
+        flexDirection={{ xs: "column", md: "row" }}
+        justifyContent="flex-end"
+        m="40px 0"
+        gap={5}
+      >
+        <UserInfo
+          address={address}
+          setAddress={setAddress}
+          phone={phone}
+          setPhone={setPhone}
+          payment={payment}
+          setPayment={setPayment}
+          note={note}
+          setNote={setNote}
+        />
         <Typography
-          sx={{ width: { xs: "50%", md: "30%"}}}
+          sx={{ width: { xs: "100%", md: "30%" } }}
           textAlign="center"
           fontSize="1.7rem"
           textTransform="uppercase"
@@ -101,11 +237,54 @@ const OrderItem: React.FC = () => {
         >
           Tổng Thanh Toán
         </Typography>
+
         <Stack width="50%" alignItems="center">
           <Typography fontSize="1.5rem" color="#9f1110">
-            795.000đ
+            {formatNumber(
+              carts
+                .reduce((accumulator, currentItem) => {
+                  const itemCost =
+                    parseFloat(currentItem.unitPrice) *
+                    parseInt(currentItem.quantity);
+                  return accumulator + itemCost;
+                }, 0)
+                .toString()
+            )}{" "}
+            đ
           </Typography>
-          <button className={styles.buttonConfirm}>Đặt hàng</button>
+          <button
+            className={styles.buttonConfirm}
+            onClick={() => {
+              createAnOrder({
+                phone: phone,
+                note: note,
+                address: address,
+                paymentMethod: payment,
+                products: carts,
+              })
+                .then((res) => {
+                  console.log("tao order thanh cong", res.data.orderId);
+                  setStatusAlert("success");
+                  setMessageAlert(res.data.message);
+                  setOpenNoti(true);
+                  setChange(change + 1);
+                  const query = { id: res.data.orderId };
+                  router.push({
+                    pathname: "/payment",
+                    query,
+                  });
+                })
+                .catch((error) => {
+                  setStatusAlert("error");
+                  console.log(error.response.data.message);
+                  setMessageAlert(error.response.data.message);
+                  setOpenNoti(true);
+                  setChange(change + 1);
+                });
+            }}
+          >
+            Đặt hàng
+          </button>
           <Stack flexDirection="row" justifyContent="space-between">
             <img
               className="next"
@@ -116,6 +295,19 @@ const OrderItem: React.FC = () => {
             </Typography>
           </Stack>
         </Stack>
+        <Snackbar
+          open={openNoti}
+          autoHideDuration={null}
+          onClose={handleCloseNoti}
+        >
+          <Alert
+            onClose={handleCloseNoti}
+            severity={statusAlert}
+            sx={{ width: "100%" }}
+          >
+            {messageAlert}
+          </Alert>
+        </Snackbar>
       </Stack>
     </>
   );
