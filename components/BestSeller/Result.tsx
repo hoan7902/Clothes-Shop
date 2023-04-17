@@ -73,6 +73,7 @@ const Result = ({ title, setTotal }: ResultProps) => {
       </Stack>
       <Box
         mt={"25px"}
+        mb={"25px"}
         display="grid"
         gridTemplateRows={"1fr"}
         gridTemplateColumns={{
@@ -81,7 +82,7 @@ const Result = ({ title, setTotal }: ResultProps) => {
           lg: "repeat(3, 1fr)",
           xl: "repeat(4, 1fr)",
         }}
-        rowGap={{ xs: "35px", sm: "6px", md: "35px" }}
+        rowGap={{ xs: "35px", sm: "36px", md: "35px" }}
         columnGap={{ xs: "5px", sm: "10px", md: "25px" }}
         justifyContent={"center"}
         justifyItems={"center"}
