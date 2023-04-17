@@ -35,7 +35,7 @@ export default function BestSeller({
             lg: "1500px",
             xl: "1567px",
           }}
-          mx="auto"
+          mx="6%"
           pb="3rem"
           pl={{ xs: "1rem", sm: "0rem" }}
         >
