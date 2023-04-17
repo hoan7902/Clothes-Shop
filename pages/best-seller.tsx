@@ -27,7 +27,7 @@ export default function BestSeller({
     <>
       <Layout>
         <Box
-          mt="85px"
+          mt="100px"
           maxWidth={{
             xs: "540px",
             sm: "800px",

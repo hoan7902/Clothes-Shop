@@ -26,7 +26,12 @@ import { CategoryTyp } from "@/pages/best-seller";
 // }
 const Fillter = ({ categories }: { categories: CategoryTyp[] }) => {
   return (
-    <Box width={{ xs: "100%", md: "25%" }} maxWidth={{ md: "305px" }} mr="24px">
+    <Box
+      width={{ xs: "100%", md: "25%" }}
+      maxWidth={{ md: "305px" }}
+      mr="24px"
+      paddingLeft={{ md: "10px", lg: "5px" }}
+    >
       <Typography
         variant="h3"
         fontSize={{ xs: "1rem", sm: "1rem", md: "1.125rem" }}
