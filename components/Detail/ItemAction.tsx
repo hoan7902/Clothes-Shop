@@ -13,7 +13,7 @@ import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import HouseboatIcon from "@mui/icons-material/Houseboat";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { AuthDialog, InfoDialog } from "../Home/Popup";
 import { addtoCart } from "@/pages/api";
 import { AxiosResponse } from "axios";

@@ -101,15 +101,6 @@ const Result = ({ title, setTotal }: ResultProps) => {
               </Link>
             );
           })}
-
-        <ProductBox
-          images={[
-            "https://cdn.lep.vn//2022/07/images/products/1660908378355-4VA1386NAS-compressed-800x800.jpeg",
-            "https://cdn.lep.vn//2022/07/images/products/1660119057109-_DSC3749-compressed-\\(1\\)-800x800.jpeg",
-          ]}
-          name={"Váy nơ cổ tùng xòe 4VA1386NA"}
-          price={"750.000 đ"}
-        />
       </Box>
     </Box>
   );

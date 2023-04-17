@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Alert,
   AlertColor,
@@ -12,6 +12,7 @@ import styles from "./styles.module.css";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { loginUser } from "@/pages/api";
+import { UserContext } from "@/pages/[productId]";
 
 interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,19 +30,28 @@ const Login: React.FC<Props> = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isVisibility, setIsVisibility] = useState(false);
-
+  const { handleClick } = useContext(UserContext);
   const handleChangeVisibility = () => {
     setIsVisibility(!isVisibility);
   };
 
   const handleLogin = async () => {
-    const response = await loginUser(JSON.stringify({ email, password }));
+    let response;
+    await loginUser(JSON.stringify({ email, password }))
+      .then((res) => {
+        console.log(res);
+        response = res;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     if (response) {
       setStatusAlert("success");
       setMessageAlert("Đăng nhập thành công");
       setOpenNoti(true);
       setOpen(false);
       localStorage.setItem("user", JSON.stringify(response));
+      handleClick();
     } else {
       setStatusAlert("error");
       setMessageAlert("Thiếu hoặc sai thông tin");

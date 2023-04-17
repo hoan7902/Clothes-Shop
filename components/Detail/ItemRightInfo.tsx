@@ -8,7 +8,7 @@ import {
   Rating,
   Divider,
 } from "@mui/material";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import LikeSection from "./LikeSection";
 import RatingSection from "./RatingSection";
 import CodeSection from "./CodeSection";

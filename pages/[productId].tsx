@@ -8,56 +8,68 @@ import { getProduct, getProducts } from "./api";
 import { GetStaticProps } from "next";
 import RatingBox from "@/components/Detail/RatingBox";
 import CommentBox from "@/components/Detail/CommentBox";
+import { createContext } from "react";
 
+export const UserContext = createContext({
+  userChange: 0,
+  handleClick: () => {},
+});
 const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
+  const [change, setChange] = useState(false);
+  const [userChange, setUserChange] = useState(0);
+  const handleClick = () => {
+    setUserChange(userChange + 1);
+  };
   return (
-    <Layout>
-      <Box
-        width={"100%"}
-        mt="85px"
-        maxWidth={{
-          xs: "540px",
-          sm: "800px",
-          md: "1000px",
-          lg: "1500px",
-          xl: "1567px",
-        }}
-        mx="auto"
-        pb="3rem"
-      >
+    <UserContext.Provider value={{ userChange, handleClick }}>
+      <Layout>
         <Box
-          display="flex"
-          flexDirection={{ xs: "column", md: "row" }}
+          width={"100%"}
+          mt="85px"
+          maxWidth={{
+            xs: "540px",
+            sm: "800px",
+            md: "1000px",
+            lg: "1500px",
+            xl: "1567px",
+          }}
+          mx="auto"
           pb="3rem"
         >
           <Box
-            width={{ xs: "100%", sm: "100%", md: "33.333%" }}
-            bgcolor={"white"}
+            display="flex"
+            flexDirection={{ xs: "column", md: "row" }}
+            pb="3rem"
           >
-            <ItemLeftInfo images={productInfo.images} />
+            <Box
+              width={{ xs: "100%", sm: "100%", md: "33.333%" }}
+              bgcolor={"white"}
+            >
+              <ItemLeftInfo images={productInfo.images} />
+            </Box>
+            <ItemRightInfo
+              productId={productInfo.productId}
+              name={productInfo.name}
+              numberRating={productInfo.numberRating}
+              ratingPoint={productInfo.ratingPoint}
+              sizes={productInfo.sizes}
+            />
           </Box>
-          <ItemRightInfo
-            productId={productInfo.productId}
-            name={productInfo.name}
-            numberRating={productInfo.numberRating}
-            ratingPoint={productInfo.ratingPoint}
-            sizes={productInfo.sizes}
-          />
+          <Divider
+            orientation="horizontal"
+            flexItem
+            sx={{ borderLeft: "0.05px solid black" }}
+          ></Divider>
+          <CommentBox productId={productInfo.productId} change={change} />
+          <Divider
+            orientation="horizontal"
+            flexItem
+            sx={{ borderLeft: "0.05px solid black" }}
+          ></Divider>
+          <RatingBox productId={productInfo.productId} setChange={setChange} />
         </Box>
-        <Divider
-          orientation="horizontal"
-          flexItem
-          sx={{ borderLeft: "0.05px solid black" }}
-        ></Divider>
-        <CommentBox productId={productInfo.productId} />
-        <Divider
-          orientation="horizontal"
-          flexItem
-          sx={{ borderLeft: "0.05px solid black" }}
-        ></Divider>
-        <RatingBox productId={productInfo.productId} />
-      </Box>
-    </Layout>
+      </Layout>
+    </UserContext.Provider>
   );
 };
 

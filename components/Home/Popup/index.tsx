@@ -26,7 +26,7 @@ const Popup = (): JSX.Element => {
   const [openNoti, setOpenNoti] = useState(false);
   const [statusAlert, setStatusAlert] = useState<AlertColor>("success");
   const [messageAlert, setMessageAlert] = useState("Cập nhật thành công");
-
+  console.log(openNoti);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -124,11 +124,7 @@ const Popup = (): JSX.Element => {
           </DialogContent>
         </Box>
       </Dialog>
-      <Snackbar
-        open={openNoti}
-        autoHideDuration={null}
-        onClose={handleCloseNoti}
-      >
+      <Snackbar open={true} autoHideDuration={null} onClose={handleCloseNoti}>
         <Alert
           onClose={handleCloseNoti}
           severity={statusAlert}

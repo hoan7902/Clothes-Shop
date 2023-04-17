@@ -11,10 +11,18 @@ import {
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import Rating from "@mui/material/Rating";
-import { useRef, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { styled } from "@mui/material/styles";
 import { addRating, addtoCart } from "@/pages/api";
 import { AuthDialog } from "../Home/Popup";
+import { UserContext } from "@/pages/[productId]";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -24,30 +32,27 @@ const StyledRating = styled(Rating)({
     color: "#9f1110",
   },
 });
-const RatingBox = ({ productId }: { productId: string }) => {
+const RatingBox = ({
+  productId,
+  setChange,
+}: {
+  productId: string;
+  setChange: Dispatch<SetStateAction<boolean>>;
+}) => {
   const [open, setOpen] = useState(false);
   const [openNoti, setOpenNoti] = useState(false);
   const [statusAlert, setStatusAlert] = useState<AlertColor>("success");
   const [messageAlert, setMessageAlert] = useState("Cập nhật thành công");
-  let userStr;
-  if (typeof localStorage !== "undefined") {
-    const userStr = localStorage?.getItem("user");
-    // Access localStorage here
-  } else {
-    // Handle the case where localStorage is not available
-  }
-  let name = "";
-  if (userStr) {
-    const user = JSON.parse(userStr);
 
-    // Lấy thuộc tính name của user
-    name = user.data.name;
-
-    // Sử dụng biến name ở đây
-    console.log(`Welcome, ${name}!`);
-  } else {
-    console.log("No user found in localStorage");
-  }
+  const { userChange } = useContext(UserContext);
+  const [name, setName] = useState("");
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      const userData = JSON.parse(user);
+      setName(userData.data.name);
+    }
+  }, [userChange]);
   const handleCloseNoti = (
     event: React.SyntheticEvent | Event | undefined = undefined,
     reason?: string
@@ -60,6 +65,7 @@ const RatingBox = ({ productId }: { productId: string }) => {
 
   const [ratingPoint, setRatingPoint] = useState(0);
   const textAreaRef = useRef<HTMLTextAreaElement>(null!);
+
   return (
     <Box
       display={"flex"}
@@ -161,6 +167,7 @@ const RatingBox = ({ productId }: { productId: string }) => {
               setMessageAlert(res.data.message);
               setOpenNoti(true);
               textAreaRef.current.value = "";
+              setChange(true);
             });
           } else setOpen(true);
         }}
