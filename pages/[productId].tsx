@@ -15,7 +15,7 @@ export const UserContext = createContext({
   handleClick: () => {},
 });
 const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
-  const [change, setChange] = useState(false);
+  const [change, setChange] = useState(0);
   const [userChange, setUserChange] = useState(0);
   const handleClick = () => {
     setUserChange(userChange + 1);
