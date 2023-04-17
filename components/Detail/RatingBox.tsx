@@ -24,7 +24,7 @@ import { addRating, addtoCart } from "@/pages/api";
 import { AuthDialog } from "../Home/Popup";
 import { UserContext } from "@/pages/[productId]";
 
-const StyledRating = styled(Rating)({
+export const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
     color: "#9f1110",
   },
@@ -37,7 +37,7 @@ const RatingBox = ({
   setChange,
 }: {
   productId: string;
-  setChange: Dispatch<SetStateAction<boolean>>;
+  setChange: Dispatch<SetStateAction<number>>;
 }) => {
   const [open, setOpen] = useState(false);
   const [openNoti, setOpenNoti] = useState(false);
@@ -167,7 +167,7 @@ const RatingBox = ({
               setMessageAlert(res.data.message);
               setOpenNoti(true);
               textAreaRef.current.value = "";
-              setChange(true);
+              setChange((curr) => curr + 1);
             });
           } else setOpen(true);
         }}

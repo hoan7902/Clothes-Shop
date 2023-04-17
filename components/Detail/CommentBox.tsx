@@ -2,12 +2,13 @@ import { getRating } from "@/pages/api";
 import { Box, Typography, Stack, Button, Divider } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import { useEffect, useState } from "react";
+import { StyledRating } from "./RatingBox";
 const CommentBox = ({
   productId,
   change,
 }: {
   productId: string;
-  change: boolean;
+  change: number;
 }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -55,7 +56,7 @@ const CommentBox = ({
                 <Box display={"flex"} gap={20} alignItems={"center"} my={1}>
                   <Stack alignItems={"center"}>
                     <Typography>{item.name}</Typography>
-                    <Rating value={item.star} readOnly max={5} />
+                    <StyledRating value={item.star} readOnly max={5} />
                   </Stack>
                   <Typography>{item.comment}</Typography>
                 </Box>
