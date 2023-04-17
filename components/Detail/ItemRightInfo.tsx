@@ -83,7 +83,7 @@ const ItemRightInfo = ({
         paddingTop={"5px"}
         paddingBottom={"15px"}
         paddingX={{ xs: "5px", sm: "20px", md: "10px" }}
-        zIndex={5}
+        zIndex={1}
         sx={{
           backgroundColor: "white",
         }}

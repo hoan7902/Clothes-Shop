@@ -123,7 +123,12 @@ const Category = ({
   };
   return (
     <ThemeProvider theme={theme}>
-      <Box pl="0.125rem" pb="15px" mt="15px" borderBottom="1px solid #d9d9d9">
+      <Box
+        pl={{ xs: "10px", md: "0.125rem" }}
+        pb="15px"
+        mt="15px"
+        borderBottom="1px solid #d9d9d9"
+      >
         <ListItemButton
           disableTouchRipple={false}
           disableRipple={false}
@@ -149,7 +154,7 @@ const Category = ({
           <ListItemText
             primary={title}
             primaryTypographyProps={{
-              fontSize: { xs: "10px", sm: "12px", md: "15px" },
+              fontSize: { xs: "15px", sm: "12px", md: "15px" },
               lineHeight: "22px",
               fontWeight: "400",
             }}
@@ -157,62 +162,76 @@ const Category = ({
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List
-            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+            sx={{
+              width: "100%",
+              maxWidth: 360,
+              bgcolor: "background.paper",
+              display: "grid",
+              gridTemplateRows: "1fr",
+              gridTemplateColumns: {
+                xs: "repeat(3, 1fr)",
+                sm: "repeat(5, 1fr)",
+                md: "repeat(2, 1fr)",
+                xl: "repeat(2, 1fr)",
+              },
+            }}
           >
-            {itemList.map((category) => {
-              const labelId = `checkbox-list-${title}-${category.categoryId}`;
-              return (
-                // <Tooltip disableHoverListener title={category.description}>
-                <ListItem key={parseInt(category.categoryId)} disablePadding>
-                  <ListItemButton
-                    role={undefined}
-                    onClick={handleToggle(parseInt(category.categoryId))}
-                    sx={{
-                      paddingBlock: "0",
-                    }}
-                  >
-                    <ListItemIcon
+            {itemList !== null &&
+              itemList.map((category) => {
+                const labelId = `checkbox-list-${title}-${category.categoryId}`;
+                return (
+                  // <Tooltip disableHoverListener title={category.description}>
+                  <ListItem key={parseInt(category.categoryId)} disablePadding>
+                    <ListItemButton
+                      role={undefined}
+                      onClick={handleToggle(parseInt(category.categoryId))}
                       sx={{
-                        height: "16px",
-                        minWidth: { xs: "5px", sm: "20px" },
+                        paddingBlock: "0",
                       }}
                     >
-                      <Checkbox
-                        size="small"
-                        edge="start"
-                        checked={
-                          checked.indexOf(parseInt(category.categoryId)) !== -1
-                        }
-                        tabIndex={-1}
-                        disableRipple
-                        inputProps={{ "aria-labelledby": labelId }}
-                      />
-                    </ListItemIcon>
-                    <Tooltip
-                      disableFocusListener
-                      disableTouchListener
-                      title={category.description}
-                      placement="bottom"
-                    >
-                      <ListItemText
-                        id={labelId}
-                        primary={`${category.name}`}
-                        primaryTypographyProps={{
-                          fontSize: "14px",
-                          fontWeight: 100,
-                          lineHeight: "20px",
-                          marginLeft: "8px",
-                          maxWidth: "260px",
-                          // color: "rgb(68,68,68)",
-                          color: "rgb(68,68,68)",
-                          textTransform: "capitalize",
+                      <ListItemIcon
+                        sx={{
+                          height: "16px",
+                          minWidth: { xs: "5px", sm: "20px" },
                         }}
-                      />
-                    </Tooltip>
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
+                      >
+                        <Checkbox
+                          size="small"
+                          edge="start"
+                          checked={
+                            checked.indexOf(parseInt(category.categoryId)) !==
+                            -1
+                          }
+                          tabIndex={-1}
+                          disableRipple
+                          inputProps={{ "aria-labelledby": labelId }}
+                        />
+                      </ListItemIcon>
+                      <Tooltip
+                        disableFocusListener
+                        disableTouchListener
+                        title={category.description}
+                        placement="bottom"
+                      >
+                        <ListItemText
+                          id={labelId}
+                          primary={`${category.name}`}
+                          primaryTypographyProps={{
+                            fontSize: "14px",
+                            fontWeight: 100,
+                            lineHeight: "20px",
+                            marginLeft: "8px",
+                            maxWidth: "260px",
+                            // color: "rgb(68,68,68)",
+                            color: "rgb(68,68,68)",
+                            textTransform: "capitalize",
+                          }}
+                        />
+                      </Tooltip>
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
           </List>
         </Collapse>
 

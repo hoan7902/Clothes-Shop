@@ -12,15 +12,15 @@ const ProductBox = ({ images, name, price }: ProductBoxProps) => {
   const [image, setImage] = useState<string>(images[0]);
 
   return (
-    <Box width="100%" height="100%">
+    <Box width="100%">
       <Box
         overflow="hidden"
         width="100%"
         height={{ xs: "50%", sm: "60%", md: "82%" }}
       >
         <Box
-          width={{ xs: "100%", sm: "80%", md: "100%" }}
-          height={{ xs: "200px", sm: "700px", md: "500px" }}
+          width={{ xs: "300px", sm: "400px", md: "250px" }}
+          height={{ xs: "500px", sm: "300px", md: "400px" }}
           sx={{
             backgroundImage: `url(${images[0]})`,
             backgroundRepeat: "no-repeat",

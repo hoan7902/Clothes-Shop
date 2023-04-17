@@ -12,7 +12,6 @@ import styles from "./styles.module.css";
 import UserInfo from "../UserInfo";
 import { addtoCart, createAnOrder, myCart, removeFromCart } from "@/pages/api";
 import { formatNumber } from "@/components/Detail/SizeSection";
-import { error } from "console";
 import { useRouter } from "next/router";
 import { AuthDialog } from "@/components/Home/Popup";
 const OrderItem = () => {
@@ -21,6 +20,7 @@ const OrderItem = () => {
   const [openNoti, setOpenNoti] = useState(false);
   const [statusAlert, setStatusAlert] = useState<AlertColor>("success");
   const [messageAlert, setMessageAlert] = useState("Cập nhật thành công");
+
   const handleCloseNoti = (
     event: React.SyntheticEvent | Event | undefined = undefined,
     reason?: string

@@ -37,9 +37,14 @@ export default function BestSeller({
           }}
           mx="auto"
           pb="3rem"
+          pl={{ xs: "1rem", sm: "0rem" }}
         >
           <Breadcrumb />
-          <Box mx="auto" display="flex">
+          <Box
+            mx="auto"
+            display="flex"
+            flexDirection={{ xs: "column", md: "row" }}
+          >
             <Fillter categories={categories} />
             <Result title="sản phẩm bán chạy" setTotal={setTotalPage} />
           </Box>
@@ -53,7 +58,15 @@ export default function BestSeller({
 export const getStaticProps: GetStaticProps<{
   categories: CategoryTyp[];
 }> = async (context) => {
-  const res = (await getCategories()).data.categories;
+  // .data.categories
+  let res: never[] = [];
+  await getCategories()
+    .then((response) => {
+      res = response.data.categories;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
   return {
     props: {

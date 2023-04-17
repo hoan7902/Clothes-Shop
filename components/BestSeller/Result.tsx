@@ -43,14 +43,17 @@ const Result = ({ title, setTotal }: ResultProps) => {
   const [allProducts, setAllProduct] = useState<ProductTyp[]>([]);
 
   const fetchData = async (query: any) => {
-    const result = await getProducts(query);
-    setAllProduct(result.data.data);
-    let limit;
-    if (router.query.limit && typeof router.query.limit == "string")
-      limit = parseInt(router.query.limit);
-    else limit = 24;
-    setTotal(Math.floor(result.data.count / limit) + 1);
-    return result;
+    await getProducts(query)
+      .then((res) => {
+        setAllProduct(res.data.data);
+        let limit;
+        if (router.query.limit && typeof router.query.limit == "string")
+          limit = parseInt(router.query.limit);
+        else limit = 24;
+        setTotal(Math.floor(res.data.count / limit) + 1);
+        return res;
+      })
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
@@ -58,10 +61,10 @@ const Result = ({ title, setTotal }: ResultProps) => {
   }, [router.query]);
 
   return (
-    <Box width={"74%"} maxWidth={"74%"}>
+    <Box width={{ xs: "100%", md: "74%" }} mt={{ xs: "10px", md: "0px" }}>
       <Title title="sản phẩm bán chạy" />
       <Stack
-        direction={{ sx: "column", md: "row" }}
+        direction={{ xs: "column", md: "row" }}
         justifyContent="space-between"
         alignItems="center"
       >
@@ -78,9 +81,10 @@ const Result = ({ title, setTotal }: ResultProps) => {
           lg: "repeat(3, 1fr)",
           xl: "repeat(4, 1fr)",
         }}
-        rowGap={{ xs: "5px", sm: "6px", md: "35px" }}
+        rowGap={{ xs: "35px", sm: "6px", md: "35px" }}
         columnGap={{ xs: "5px", sm: "10px", md: "25px" }}
         justifyContent={"center"}
+        justifyItems={"center"}
       >
         {allProducts &&
           allProducts.map((product, index) => {
