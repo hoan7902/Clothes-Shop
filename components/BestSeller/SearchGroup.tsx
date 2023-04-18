@@ -1,11 +1,19 @@
 import { Stack, Button, Box } from "@mui/material";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import styles from "./style.module.css"
+import { useEffect, useState } from "react";
+import styles from "./style.module.css";
 
 const SearchGroup = () => {
-  const [selected, setSelected] = useState("Mặc định");
+  const [selected, setSelected] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    if (router.pathname === "/best-seller") {
+      setSelected("Bán chạy");
+    } else if (router.pathname === "/shop-products") {
+      setSelected("Mặc định");
+    }
+  }, []);
 
   function handleSortByDefault() {
     let page = router.query.page;
@@ -122,27 +130,13 @@ const SearchGroup = () => {
       {["Mặc định", "Mới nhất", "Bán chạy", "Giá thấp", "Giá cao"].map(
         (title, idx) => (
           <button
-            // variant="contained"
-            // sx={{
-            //   borderRadius: "0.01",
-            //   bgcolor: selected === title ? "rgb(173,37,38)" : "white",
-            //   color: selected === title ? "white" : "black",
-            //   border: "1px solid transparent",
-            //   fontSize: { xs: "0.7rem", sm: "0.7rem" },
-            //   // boxShadow: "rgba(33,33,33,0.2) 0 0 11px 0px",
-            //   "&:hover": {
-            //     bgcolor: "rgb(173,37,38)",
-            //     color: "white",
-            //     border: "1px solid transparent",
-            //     opacity: "0.8",
-            //   },
-            // }}
+            key={idx}
             className={styles.button}
             style={{
               backgroundColor: selected === title ? "#ad2526" : "white",
               color: selected === title ? "white" : "black",
               borderColor: selected === title ? "#ad2526" : "black",
-              opacity: selected === title ? "0.82" : "1"
+              opacity: selected === title ? "0.82" : "1",
             }}
             onClick={() => {
               setSelected(title);
@@ -161,7 +155,6 @@ const SearchGroup = () => {
               if (title === "Giá cao") {
                 handleSortHighPrice();
               }
-              // add more logic for other buttons
             }}
           >
             {title}
@@ -169,50 +162,6 @@ const SearchGroup = () => {
         )
       )}
     </Box>
-    // <Stack direction={{ xs: "row", md: "row" }} gap={{ xs: 1, md: 2 }}>
-    //   {["Mặc định", "Mới nhất", "Bán chạy", "Giá thấp", "Giá cao"].map(
-    //     (title, idx) => (
-    //       <Button
-    //         variant="contained"
-    //         sx={{
-    //           borderRadius: "0.01",
-    //           bgcolor: selected === title ? "rgb(173,37,38)" : "white",
-    //           color: selected === title ? "white" : "black",
-    //           border: "1px solid transparent",
-    //           fontSize: { xs: "0.3rem", sm: "0.7rem" },
-    //           boxShadow: "rgba(33,33,33,0.2) 0 0 11px 0px",
-    //           "&:hover": {
-    //             bgcolor: "rgb(173,37,38)",
-    //             color: "white",
-    //             border: "1px solid transparent",
-    //             opacity: "0.8",
-    //           },
-    //         }}
-    //         onClick={() => {
-    //           setSelected(title);
-    //           if (title === "Mặc định") {
-    //             handleSortByDefault();
-    //           }
-    //           if (title === "Mới nhất") {
-    //             handleSortByNewest();
-    //           }
-    //           if (title === "Bán chạy") {
-    //             handleSortByHot();
-    //           }
-    //           if (title === "Giá thấp") {
-    //             handleSortLowPrice();
-    //           }
-    //           if (title === "Giá cao") {
-    //             handleSortHighPrice();
-    //           }
-    //           // add more logic for other buttons
-    //         }}
-    //       >
-    //         {title}
-    //       </Button>
-    //     )
-    //   )}
-    // </Stack>
   );
 };
 

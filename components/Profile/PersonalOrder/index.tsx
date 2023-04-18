@@ -141,7 +141,7 @@ const PersonalOrder: React.FC<Props> = () => {
       )}
 
       {orderData.length !== 0 &&
-        orderData?.map((order, index) => <PersonalOrderItem order={order} />)}
+        orderData?.map((order, index) => <PersonalOrderItem key={index} order={order} />)}
 
       <Stack m="20px 0" width="100%" alignItems="center">
         <Pagination

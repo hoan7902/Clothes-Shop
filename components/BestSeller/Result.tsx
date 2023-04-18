@@ -16,6 +16,7 @@ interface ResultProps {
   title: string;
   setTotal: (value: number) => void;
 }
+
 type ProductTyp = {
   createdAt: string;
   description: string;
@@ -39,10 +40,12 @@ const Result = ({ title, setTotal }: ResultProps) => {
       <a className="custom-link">{children}</a>
     </Link>
   );
+
   const router = useRouter();
   const [allProducts, setAllProduct] = useState<ProductTyp[]>([]);
 
   const fetchData = async (query: any) => {
+    console.log("check query: ", query);
     await getProducts(query)
       .then((res) => {
         setAllProduct(res?.data.data);
@@ -56,13 +59,23 @@ const Result = ({ title, setTotal }: ResultProps) => {
       .catch((error) => console.log(error));
   };
 
+  // useEffect(() => {
+  //   if (router.pathname === "/best-seller") {
+  //     fetchData({ order_by: "desc", sort_by: "order_count" });
+  //   }
+  //   else if (router.pathname === "/shop-products") {
+  //     fetchData({ order_by: 'asc', sort_by: 'created_at'});
+  //   }
+  // }, []);
+
   useEffect(() => {
     fetchData(router.query);
   }, [router.query]);
 
+
   return (
     <>
-      <Title title="sản phẩm bán chạy" />
+      <Title title={title} />
       <Stack
         direction={{ xs: "column", md: "row" }}
         justifyContent="space-between"
@@ -91,6 +104,7 @@ const Result = ({ title, setTotal }: ResultProps) => {
           allProducts.map((product, index) => {
             return (
               <Link
+                key={index}
                 href={`${product.productId}`}
                 className="link"
                 style={{

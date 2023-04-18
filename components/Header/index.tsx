@@ -131,7 +131,7 @@ const Header: React.FC = () => {
               Trang chủ
             </Typography>
           </Link>
-          <Link className={styles.headerLeft__link__item} href="/best-seller">
+          <Link className={styles.headerLeft__link__item} href="/shop-products">
             <Typography
               sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
               className={styles.headerLeft__item}
@@ -163,7 +163,6 @@ const Header: React.FC = () => {
             <Image
               src={logoImage}
               alt="Lep logo"
-              // width={72}
               height={42}
             />
           </div>

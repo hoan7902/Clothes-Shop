@@ -93,6 +93,7 @@ const PersonalPopup: React.FC<Props> = ({ listProduct, order }) => {
               {listProduct?.length !== 0 &&
                 listProduct?.map((product: any, index) => (
                   <PersonalOrderCompleteItem
+                    key={index}
                     id={product.productId}
                     size={product.size}
                     quantity={product.quantity}

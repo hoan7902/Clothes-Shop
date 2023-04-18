@@ -68,6 +68,7 @@ export default function Checkout() {
           {listProduct.length !== 0 &&
             listProduct.map((product: any, index) => (
               <OrderCompleteItem
+                key={index}
                 id={product.productId}
                 size={product.size}
                 quantity={product.quantity}

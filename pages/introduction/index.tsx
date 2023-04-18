@@ -17,6 +17,7 @@ export default function Home() {
           fontSize="2.5rem"
           fontWeight="500"
           color="#444"
+          mt="20px" 
         >
           BTL Lập Trình Web
         </Typography>

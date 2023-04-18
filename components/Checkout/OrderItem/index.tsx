@@ -92,9 +92,10 @@ const OrderItem = () => {
           Số tiền
         </Grid>
       </Grid>
-      {carts.map((cart) => {
+      {carts.map((cart, index) => {
         return (
           <Grid
+            key={index}
             container
             padding="25px"
             borderBottom="0.5px solid #444"

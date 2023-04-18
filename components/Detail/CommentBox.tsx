@@ -48,8 +48,8 @@ const CommentBox = ({
               time: string;
               star: number;
               avatar: string;
-            }) => (
-              <Box>
+            }, index) => (
+              <Box key={index}>
                 <Box display={"flex"} gap={20} alignItems={"center"}>
                   <Stack alignItems={"center"}>
                     <Typography>{item.name}</Typography>

@@ -47,7 +47,7 @@ export default function BestSeller({
           >
             <Fillter categories={categories} />
             <Box display="flex" flexDirection="column" justifyContent="center" width={{ xs: "100%", md: "74%" }} mt={{ xs: "10px", md: "0px" }}>
-              <Result title="sản phẩm bán chạy" setTotal={setTotalPage} />
+              <Result title="sản phẩm" setTotal={setTotalPage} />
               <Pagi total={totalPage} />
             </Box>
           </Box>
