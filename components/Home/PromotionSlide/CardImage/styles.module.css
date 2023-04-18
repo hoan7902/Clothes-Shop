@@ -10,9 +10,9 @@
 
 
 .image {
-    width: 90%; /* or any custom size */
-    height: 100%;
-    object-fit: contain;
+    width: 90%;
+    height: 300px;
+    /* object-fit: contain; */
 }
 
 .name {

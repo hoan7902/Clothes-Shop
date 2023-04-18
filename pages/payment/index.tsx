@@ -1,6 +1,7 @@
 import OrderCompleteItem from "@/components/Checkout/OrderCompleteItem";
 import Layout from "@/components/Layout";
 import { Box, Grid, Stack, Typography } from "@mui/material";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getOrderById, getProducts } from "../api";
@@ -92,9 +93,11 @@ export default function Checkout() {
                   className="next"
                   src="https://lep.vn/icons/icon-go-back-red.svg"
                 />
-                <Typography pl="1rem" color="#ad2526;">
-                  Tiếp tục mua sắm
-                </Typography>
+                <Link href="/best-seller" style={{ textDecoration: "none"}}>
+                  <Typography pl="1rem" color="#ad2526;">
+                    Tiếp tục mua sắm
+                  </Typography>
+                </Link>
               </Stack>
             </Stack>
           </Stack>

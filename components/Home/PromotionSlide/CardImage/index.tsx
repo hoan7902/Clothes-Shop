@@ -13,7 +13,7 @@ const CardImage = ({ src, name, price }: CardImageProps): JSX.Element => {
     <div className={styles.wrapper__item}>
       <img className={styles.image} alt="image" title="image" src={src} />
       <Typography className={styles.name} color="#000">{name}</Typography>
-      <Typography className={styles.price} color="#000">{price}</Typography>
+      <Typography className={styles.price} color="#000">{parseInt(price).toLocaleString()} đ</Typography>
     </div>
   );
 };

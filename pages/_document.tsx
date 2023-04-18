@@ -23,7 +23,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
             rel="stylesheet"
           />
-          <link rel="icon" href="/ClothesShop.png" />
+          <link rel="icon" href="/logo2.png" />
         </Head>
         <body>
           <Main />

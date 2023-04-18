@@ -1,29 +1,47 @@
+import ReloadContext from "@/contexts/ReloadContext";
 import { getMyOrders } from "@/pages/api";
-import { Box, Grid, Stack, Typography } from "@mui/material";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Box, Grid, Pagination, Stack, Typography } from "@mui/material";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import PersonalOrderItem from "./PersonalOrderItem";
 import styles from "./styles.module.css";
 
-interface Props {
-  
-}
+interface Props {}
 
 const PersonalOrder: React.FC<Props> = () => {
   const [activeStatus, setActiveStatus] = useState("Pending");
   const [orderData, setOrderData] = useState([]);
+  const { reload, setReload } = useContext(ReloadContext);
+  const [total, setTotal] = useState(0);
+  const [limit, setLimit] = useState(5);
+  const [page, setPage] = useState(1);
 
   const handleStatusClick = (status: string) => {
     setActiveStatus(status);
   };
 
   const fetchData = async () => {
-    const response = await getMyOrders(activeStatus);
+    const response = await getMyOrders(activeStatus, limit, page);
     setOrderData(response.data.data);
+    setTotal(response?.data.count);
+  };
+
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ): void => {
+    setPage(value);
+    setReload(!reload);
   };
 
   useEffect(() => {
     fetchData();
-  }, [activeStatus]);
+  }, [activeStatus, reload]);
   return (
     <Stack
       sx={{
@@ -122,9 +140,15 @@ const PersonalOrder: React.FC<Props> = () => {
         </Stack>
       )}
 
-      {orderData.length !== 0 && orderData?.map((order, index) => (
-        <PersonalOrderItem order={order} />
-      ))}
+      {orderData.length !== 0 &&
+        orderData?.map((order, index) => <PersonalOrderItem order={order} />)}
+
+      <Stack m="20px 0" width="100%" alignItems="center">
+        <Pagination
+          count={Math.ceil(total / limit)}
+          onChange={handlePageChange}
+        />
+      </Stack>
     </Stack>
   );
 };

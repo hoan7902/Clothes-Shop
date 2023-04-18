@@ -8,7 +8,6 @@ API.interceptors.request.use((req) => {
       JSON.parse(localStorage.getItem('user') || '{}').token
     }`;
   }
-
   return req;
 });
 
@@ -27,7 +26,6 @@ export const updateUser = async (dataForm: string) => {
     return response;
   } catch (error) {
     return (error as AxiosError).response
-    
   }
 }
 
@@ -38,8 +36,8 @@ export const updateAvatar = async (formData: any) => {
   return response;
 }
 
-export const getMyOrders = async (status: string) => {
-  const response = await API.get(`api/order/my-orders?status=${status}`);
+export const getMyOrders = async (status: string, limit: any = 10, frame: any = 1) => {
+  const response = await API.get(`api/order/my-orders?status=${status}&limit=${limit}&frame=${frame}`);
   return response;
 }
 
@@ -90,31 +88,37 @@ export const getOrderById = async (id: any) => {
   const response = await API.get(`api/order/${id}`);
   return response;
 }
+
 export const addtoCart = async(productId: any,params:any )=>{
   console.log(`/api/cart/${productId}`,params)
   const response = await API.post(`/api/cart/${productId}`, params );
   return response;
 }
+
 export const removeFromCart = async(productId: any,params:any )=>{
   console.log(`delete /api/cart/${productId}/${params}`,params)
   const response = await API.delete(`/api/cart/${productId}/${params}` );
   return response;
 }
+
 export const addRating = async(productId: any, params: any )=>{
   console.log(`/api/rating/${productId}`, params)
   const response = await API.post(`/api/rating/${productId}`, params);
   return response;
 }
+
 export const getRating = async(productId: any )=>{
   console.log(`/api/rating/${productId}`)
   const response = await API.get(`/api/rating/${productId}`);
   return response;
 }
+
 export const myCart = async()=>{
   console.log(`api/cart/my-cart`)
   const response = await API.get(`api/cart/my-cart`);
   return response;
 }
+
 export const createAnOrder = async(params: any)=>{
   console.log(`api/order/create`)
   const response = await API.post(`api/order/create`,params);

@@ -81,7 +81,7 @@
 
 .arrowSlickBefore {
     position: absolute;
-    left: 0px !important;
+    left: -20px !important;
     top: 178px !important;
 }
 

@@ -48,7 +48,6 @@ const OrderItem = () => {
   useEffect(() => {
     myCart()
       .then((res) => {
-        console.log("Checkout", res.data.data);
         setCart(res.data.data);
       })
       .catch((err) => {

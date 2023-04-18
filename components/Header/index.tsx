@@ -25,7 +25,7 @@ import ReloadContext from "@/contexts/ReloadContext";
 import PersonIcon from "@mui/icons-material/Person";
 import HistoryIcon from "@mui/icons-material/History";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import logoImage from "../../assets/image/ClothesShop.png";
+import logoImage from "../../assets/image/logo2.png";
 import Image from "next/image";
 
 const Header: React.FC = () => {
@@ -161,11 +161,10 @@ const Header: React.FC = () => {
         <Link href="/">
           <div className={styles.headerCenter}>
             <Image
-              // src="https://lep.vn/icons/page-logo.svg"
               src={logoImage}
               alt="Lep logo"
-              width={48}
-              height={72}
+              // width={72}
+              height={42}
             />
           </div>
         </Link>
