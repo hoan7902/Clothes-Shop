@@ -1,5 +1,6 @@
+import { getOrderById } from '@/pages/api';
 import { Grid, Stack, Typography } from '@mui/material';
-import React, { Dispatch, SetStateAction } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import PersonalPopup from '../PersonalPopup';
 
 interface OrderData {
@@ -14,11 +15,29 @@ interface OrderData {
   userId: string;
 }
 
+interface Product {
+  productId: string;
+  size: string;
+  quantity: string;
+  price: string;
+}
+
 interface Props {
   order: OrderData;
 }
 
 const PersonalOrderItem: React.FC<Props> = ({ order }) => {
+  const [listProduct, setListProduct] = useState([]);
+
+  const fetchData = async () => {
+    const response = await getOrderById(order?.orderId);
+    setListProduct(response?.data.data.products);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <Grid container padding="25px" borderBottom="0.5px solid #444" p="20px">
@@ -50,7 +69,7 @@ const PersonalOrderItem: React.FC<Props> = ({ order }) => {
         </Grid>
         <Grid item xs={6} sm={4}>
           <Stack flexDirection="row" alignItems="center">
-            <PersonalPopup order={order}/>
+            <PersonalPopup listProduct={listProduct} order={order}/>
           </Stack>
         </Grid>
       </Grid>
