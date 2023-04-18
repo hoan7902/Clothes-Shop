@@ -3,15 +3,16 @@
     color: #fff;
     text-align: center;
     /* margin: 15px; */
-    width: 211px;
+    width: 210px;
     height: 325px;
     width: 100%;
 }
 
 
 .image {
-    width: 100%; /* or any custom size */
-    height: 100%; 
+    width: 90%;
+    /* or any custom size */
+    height: 100%;
     object-fit: contain;
 }
 

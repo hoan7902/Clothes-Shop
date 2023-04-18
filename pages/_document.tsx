@@ -1,5 +1,13 @@
-import React from 'react';
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+import React from "react";
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from "next/document";
+
+import logo from "../assets/image/ClothesShop.png";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -11,7 +19,11 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-        
+          <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+            rel="stylesheet"
+          />
+          <link rel="icon" href="/ClothesShop.png" />
         </Head>
         <body>
           <Main />

@@ -62,22 +62,22 @@ const LeftCollection = (): JSX.Element => {
         <ImageBanner src="https://cdn.lep.vn/2022/09/images/categories/1662698517716-SILDE-PC-1.jpeg" />
       </div>
       <div className={styles.item}>
-        <ImageBanner src="https://cdn.lep.vn/2022/09/images/categories/1662698517716-SILDE-PC-1.jpeg" />
+        <ImageBanner src="https://cdn.lep.vn/2022/10/images/categories/1667911520965-SILDE-PC-1.jpeg" />
       </div>
       <div className={styles.item}>
-        <ImageBanner src="https://cdn.lep.vn/2022/09/images/categories/1662698517716-SILDE-PC-1.jpeg" />
+        <ImageBanner src="https://cdn.lep.vn/2022/10/images/categories/1666780541691-SILDE-PC-1-(2).jpeg" />
       </div>
       <div className={styles.item}>
-        <ImageBanner src="https://cdn.lep.vn/2022/09/images/categories/1662698517716-SILDE-PC-1.jpeg" />
+        <ImageBanner src="https://cdn.lep.vn/2022/10/images/categories/1666003565961-SILDE-PC-1-(1).jpeg" />
       </div>
       <div className={styles.item}>
-        <ImageBanner src="https://cdn.lep.vn/2022/09/images/categories/1662698517716-SILDE-PC-1.jpeg" />
+        <ImageBanner src="https://cdn.lep.vn/2022/10/images/categories/1665142006389-SILDE-PC-1.jpeg" />
       </div>
       <div className={styles.item}>
-        <ImageBanner src="https://cdn.lep.vn/2022/09/images/categories/1662698517716-SILDE-PC-1.jpeg" />
+        <ImageBanner src="https://cdn.lep.vn/2022/09/images/categories/1664710661849-SILDE-PC-1-compressed.jpeg" />
       </div>
       <div className={styles.item}>
-        <ImageBanner src="https://cdn.lep.vn/2022/09/images/categories/1662698517716-SILDE-PC-1.jpeg" />
+        <ImageBanner src="https://cdn.lep.vn/2022/07/images/categories/1661739744526-SILDE-PC-1.jpeg" />
       </div>
     </Slider>
   );

@@ -1,4 +1,5 @@
 import { Stack, Typography } from "@mui/material";
+import Link from "next/link";
 import React from "react";
 import styles from "./styles.module.css";
 
@@ -21,9 +22,11 @@ const RightCollection = ({ title }: Props): JSX.Element => {
     >
       <Typography className={styles.right__title}>{title}</Typography>
       <Typography className={styles.right__name__collection}>
-        New Collection 2023
+        New 2023
       </Typography>
-      <button className={styles.right__button}>View All</button>
+      <Link href="/best-seller">
+        <button className={styles.right__button}>View All</button>
+      </Link>
     </Stack>
   );
 };

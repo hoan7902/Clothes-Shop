@@ -1,17 +1,26 @@
-.wrapInput {
-    width: 100%;
-    border-bottom: 1px solid #444;
-}
-
 .input {
     border: none;
-    width: 100%;
-    padding: 30px 20px 10px 20px;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 6px;
     font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 300;
+    color: #444;
+    outline: none;
+    flex-grow: 1;
 }
 
-.input:focus {
+.label {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: #444;
+}
+
+.select {
     outline: none;
+    padding: 6px;
 }
 
 .buttonLogin {

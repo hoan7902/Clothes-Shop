@@ -6,15 +6,28 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CardImage from "../PromotionSlide/CardImage";
 
-interface SliderMutipleImagesProps {
+interface Product {
+  productId: string;
+  createdAt: string;
+  name: string;
+  description: string;
+  minPrice: string;
+  maxPrice: string;
+  soldQuantity: string;
+  images: string[];
+}
+
+interface Props {
+  products?: Product[];
   numberSlideToShow: number;
   numberSlideToScroll: number;
 }
 
-const SliderMutipleImages = ({
+const SliderMutipleImages: React.FC<Props> = ({
+  products,
   numberSlideToShow = 2,
   numberSlideToScroll = 2,
-}: SliderMutipleImagesProps): JSX.Element => {
+}) => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   const settings: Settings = {
@@ -60,7 +73,17 @@ const SliderMutipleImages = ({
 
   return (
     <Slider {...settings} className={styles.container}>
-      <div className={styles.item}>
+      {products &&
+        products.map((product, index) => (
+          <div key={index} className={styles.item}>
+            <CardImage
+              src={product.images[0]}
+              name={product.name}
+              price={product.minPrice}
+            />
+          </div>
+        ))}
+      {/* <div className={styles.item}>
         <CardImage
           src="https://cdn.lep.vn/2022/10/images/banners/1669012111241-1667911936656-p1.jpeg"
           name="Váy lụa 2 dây cổ đổ 1VA01740XT"
@@ -108,7 +131,7 @@ const SliderMutipleImages = ({
           name="Váy lụa 2 dây cổ đổ 1VA01740XT"
           price="650.000đ"
         />
-      </div>
+      </div> */}
     </Slider>
   );
 };

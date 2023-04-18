@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const API = axios.create({ baseURL: "http://localhost/PHP_DB_SHOP" });
 
@@ -13,13 +13,52 @@ API.interceptors.request.use((req) => {
 });
 
 export const loginUser = async (dataForm: string) => {
-  const response = await API.post("/api/user/login", dataForm);
-  return response.data; 
+  try {
+    const response = await API.post("/api/user/login", dataForm);
+    return response.data;
+  } catch (error) {
+    return (error as AxiosError).response
+  } 
+}
+
+export const updateUser = async (dataForm: string) => {
+  try {
+    const response = await API.put("/api/user/profile", dataForm);
+    return response;
+  } catch (error) {
+    return (error as AxiosError).response
+    
+  }
+}
+
+export const updateAvatar = async (formData: any) => {
+  const response = await API.post("/api/user/avatar", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return response;
+}
+
+export const getMyOrders = async (status: string) => {
+  const response = await API.get(`api/order/my-orders?status=${status}`);
+  return response;
 }
 
 export const signUpUser = async (dataForm: string) => {
-  const response = await API.post("/api/user/register", dataForm);
-  return response.data; 
+  try {
+    const response = await API.post("/api/user/register", dataForm);
+    return response.data;
+  } catch (error) {
+    return (error as AxiosError).response
+  }
+}
+
+export const getUserById = async (userId: any) => {
+  try {
+    const response = await API.get(`/api/user/${userId}`);
+    return response;
+  } catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const addCategory = async(category: any) => {
@@ -32,6 +71,11 @@ export const getCategories = async() => {
   return response;
 }
 
+export const getAllProducts = async () => {
+  const response = await API.get("/api/products");
+  return response;
+}
+
 export const getProducts = async(params: any )=>{
     const response = await API.get("/api/products",{ params: params });
     return response;
@@ -40,6 +84,11 @@ export const getProducts = async(params: any )=>{
 export const getProduct = async(productId: any )=>{
     const response = await API.get(`/api/product/${productId}`);
     return response;
+}
+
+export const getOrderById = async (id: any) => {
+  const response = await API.get(`api/order/${id}`);
+  return response;
 }
 export const addtoCart = async(productId: any,params:any )=>{
   console.log(`/api/cart/${productId}`,params)

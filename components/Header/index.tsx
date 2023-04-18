@@ -1,19 +1,107 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import { Stack, Typography, Drawer, Menu, Icon } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Stack,
+  Typography,
+  Drawer,
+  Menu,
+  Icon,
+  Box,
+  Popover,
+  Snackbar,
+  Alert,
+  AlertColor,
+} from "@mui/material";
 import styles from "./styles.module.css";
 import SearchIcon from "@mui/icons-material/Search";
-import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SidebarDrawer from "../Home/SidebarDrawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useMediaQuery, IconButton } from "@mui/material";
 import Link from "next/link";
 import Popup from "../Home/Popup";
+import { getUserById } from "@/pages/api";
+import { useContext } from "react";
+import ReloadContext from "@/contexts/ReloadContext";
+import PersonIcon from "@mui/icons-material/Person";
+import HistoryIcon from "@mui/icons-material/History";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import logoImage from "../../assets/image/ClothesShop.png";
+import Image from "next/image";
 
 const Header: React.FC = () => {
   const [openMobile, setOpenMobile] = useState(false);
   const isMobile = useMediaQuery("(max-width: 600px)");
+  const [name, setName] = useState("");
+  const { reload, setReload } = useContext(ReloadContext);
+  const [localReload, setLocalReload] = useState(false);
+  const [openNoti, setOpenNoti] = useState(false);
+  const [statusAlert, setStatusAlert] = useState<AlertColor>("error");
+  const [messageAlert, setMessageAlert] = useState("Thiếu thông tin");
+
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null
+  );
+
+  const hanldOpenNoti = () => {
+    setOpenNoti(true);
+  };
+
+  const handleCloseNoti = (
+    event: React.SyntheticEvent | Event | undefined = undefined,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenNoti(false);
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "my-popover" : undefined;
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setOpenNoti(true);
+    setStatusAlert("success");
+    setMessageAlert("Logout thành công");
+    setReload(!reload);
+    setName("");
+    setLocalReload(!localReload);
+  };
+
+  const fetchData = async () => {
+    if (localStorage.getItem("user")) {
+      const data = JSON.parse(localStorage.getItem("user") || "");
+      const dataUser = await getUserById(data.data.userId);
+      if (dataUser) {
+        if (dataUser.data.user.name) {
+          setName(dataUser.data.user.name);
+        }
+      }
+    }
+    setLocalReload(!localReload);
+  };
+
+  useEffect(() => {
+    if (typeof localStorage !== "undefined") {
+      fetchData();
+    }
+  }, [reload]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleCloseNoti(undefined, "timeout");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [openNoti, handleCloseNoti]);
 
   return (
     <Stack
@@ -32,14 +120,23 @@ const Header: React.FC = () => {
           display="flex"
           flexDirection="row"
           alignItems="center"
-          justifyContent="space-between"
+          justifyContent="space-around"
+          width="50%"
         >
-          <Link className={styles.headerLeft__link__item} href="/new-arrival">
+          <Link className={styles.headerLeft__link__item} href="/">
             <Typography
               sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
               className={styles.headerLeft__item}
             >
-              New Arrival
+              Trang chủ
+            </Typography>
+          </Link>
+          <Link className={styles.headerLeft__link__item} href="/best-seller">
+            <Typography
+              sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
+              className={styles.headerLeft__item}
+            >
+              Sản phẩm
             </Typography>
           </Link>
           <Link className={styles.headerLeft__link__item} href="/best-seller">
@@ -48,61 +145,6 @@ const Header: React.FC = () => {
               className={styles.headerLeft__item}
             >
               Best Seller
-            </Typography>
-          </Link>
-          <Link className={styles.headerLeft__link__item} href="/hot-deal">
-            <Typography
-              sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
-              className={styles.headerLeft__item}
-            >
-              Khuyến mại
-            </Typography>
-          </Link>
-          <div
-            className={`${styles.headerLeft__link__item} ${styles.headerLeft__link__item__production}`}
-          >
-            <Typography
-              sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
-              className={`${styles.headerLeft__item}`}
-            >
-              Sản phẩm
-            </Typography>
-            <div className={styles.headerLeft__link__item__production__list}>
-              <Link style={{ textDecoration: "none" }} href="/production/pants">
-                <div
-                  className={styles.headerLeft__link__item__production__child}
-                >
-                  <span>Quần</span>
-                </div>
-              </Link>
-              <Link
-                style={{ textDecoration: "none" }}
-                href="/production/dresses"
-              >
-                <div
-                  className={styles.headerLeft__link__item__production__child}
-                >
-                  <span>Đầm</span>
-                </div>
-              </Link>
-              <Link
-                style={{ textDecoration: "none" }}
-                href="/production/shirts"
-              >
-                <div
-                  className={styles.headerLeft__link__item__production__child}
-                >
-                  <span>Áo</span>
-                </div>
-              </Link>
-            </div>
-          </div>
-          <Link className={styles.headerLeft__link__item} href="/collection">
-            <Typography
-              sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
-              className={styles.headerLeft__item}
-            >
-              Bộ sưu tập
             </Typography>
           </Link>
           <Link className={styles.headerLeft__link__item} href="/introduction">
@@ -118,8 +160,9 @@ const Header: React.FC = () => {
       {!isMobile && (
         <Link href="/">
           <div className={styles.headerCenter}>
-            <img
-              src="https://lep.vn/icons/page-logo.svg"
+            <Image
+              // src="https://lep.vn/icons/page-logo.svg"
+              src={logoImage}
               alt="Lep logo"
               width={48}
               height={72}
@@ -134,12 +177,60 @@ const Header: React.FC = () => {
         justifyContent="space-between"
         className={styles.headerRight}
       >
-        <IconButton className={styles.headerRight__item}>
-          <SearchIcon />
-        </IconButton>
-        {/* <IconButton className={styles.headerRight__item}> */}
-        <Popup />
-        {/* </IconButton> */}
+        <Box display="flex" flexDirection="row" alignItems="center" mr="20px">
+          <Popup />
+          <Typography onMouseOver={handleClick}>
+            {name !== "" && !isMobile && name}
+          </Typography>
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            onMouseLeave={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "center",
+            }}
+          >
+            <Link
+              href="/my-profile/information"
+              className={styles.headerLeft__link__item}
+            >
+              <Box display="flex" alignItems="center" p="0 10px">
+                <PersonIcon />
+                <Typography sx={{ p: 2 }}>Tài khoản của bạn</Typography>
+              </Box>
+            </Link>
+            <Link
+              href="/my-profile/personal-order"
+              className={styles.headerLeft__link__item}
+            >
+              <Box display="flex" alignItems="center" p="0 10px">
+                <HistoryIcon />
+                <Typography sx={{ p: 2 }}>Lịch sử giao dịch</Typography>
+              </Box>
+            </Link>
+            <Box
+              sx={{
+                "&:hover": {
+                  cursor: "pointer",
+                },
+              }}
+              onClick={handleLogout}
+              display="flex"
+              alignItems="center"
+              p="0 10px"
+            >
+              <ExitToAppIcon />
+              <Typography sx={{ p: 2 }}>Logout</Typography>
+            </Box>
+          </Popover>
+        </Box>
         <Link href="/checkout">
           <IconButton className={styles.headerRight__item}>
             <ShoppingCartIcon />
@@ -155,6 +246,19 @@ const Header: React.FC = () => {
       >
         <SidebarDrawer openMobile={openMobile} setOpenMobile={setOpenMobile} />
       </Drawer>
+      <Snackbar
+        open={openNoti}
+        autoHideDuration={null}
+        onClose={handleCloseNoti}
+      >
+        <Alert
+          onClose={handleCloseNoti}
+          severity={statusAlert}
+          sx={{ width: "100%" }}
+        >
+          {messageAlert}
+        </Alert>
+      </Snackbar>
     </Stack>
   );
 };

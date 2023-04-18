@@ -2,13 +2,17 @@ import React from "react";
 import { Typography, Stack, Box, IconButton } from "@mui/material";
 import styles from "./styles.module.css";
 import CloseIcon from "@mui/icons-material/Close";
+import Link from "next/link";
 
 interface SidebarDrawerProps {
   openMobile: boolean;
   setOpenMobile: (open: boolean) => void;
 }
 
-const SidebarDrawer = ({ openMobile, setOpenMobile }: SidebarDrawerProps): JSX.Element => {
+const SidebarDrawer = ({
+  openMobile,
+  setOpenMobile,
+}: SidebarDrawerProps): JSX.Element => {
   return (
     <Box>
       <Stack
@@ -34,42 +38,38 @@ const SidebarDrawer = ({ openMobile, setOpenMobile }: SidebarDrawerProps): JSX.E
             <CloseIcon />
           </IconButton>
         </Stack>
-        <Typography
-          sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
-          className={styles.headerLeft__item}
-        >
-          New Arrival
-        </Typography>
-        <Typography
-          sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
-          className={styles.headerLeft__item}
-        >
-          Best Seller
-        </Typography>
-        <Typography
-          sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
-          className={styles.headerLeft__item}
-        >
-          Khuyến Mại
-        </Typography>
-        <Typography
-          sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
-          className={styles.headerLeft__item}
-        >
-          Sản phẩm
-        </Typography>
-        <Typography
-          sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
-          className={styles.headerLeft__item}
-        >
-          Collection
-        </Typography>
-        <Typography
-          sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
-          className={styles.headerLeft__item}
-        >
-          Giới thiệu
-        </Typography>
+        <Link className={styles.textNavigate} href="/">
+          <Typography
+            sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
+            className={styles.headerLeft__item}
+          >
+            Trang chủ
+          </Typography>
+        </Link>
+        <Link className={styles.textNavigate} href="/best-seller">
+          <Typography
+            sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
+            className={styles.headerLeft__item}
+          >
+            Best Seller
+          </Typography>
+        </Link>
+        <Link className={styles.textNavigate} href="/best-seller">
+          <Typography
+            sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
+            className={styles.headerLeft__item}
+          >
+            Sản phẩm
+          </Typography>
+        </Link>
+        <Link className={styles.textNavigate} href="/introduction">
+          <Typography
+            sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
+            className={styles.headerLeft__item}
+          >
+            Giới thiệu
+          </Typography>
+        </Link>
       </Stack>
     </Box>
   );

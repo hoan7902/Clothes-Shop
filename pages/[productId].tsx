@@ -33,7 +33,7 @@ const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
             lg: "1500px",
             xl: "1567px",
           }}
-          mx="auto"
+          mx="6%"
           pb="3rem"
         >
           <Box

@@ -18,7 +18,7 @@ const Signup: React.FC<Props> = ({
   setOpenNoti,
   setStatusAlert,
   setMessageAlert,
-  setIsLogin
+  setIsLogin,
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +33,7 @@ const Signup: React.FC<Props> = ({
     const response = await signUpUser(
       JSON.stringify({ name, email, password })
     );
-    if (response) {
+    if (response.status === true) {
       setOpenNoti(true);
       setStatusAlert("success");
       setMessageAlert("Đăng kí thành công");

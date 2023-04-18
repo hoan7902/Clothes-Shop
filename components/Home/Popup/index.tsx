@@ -30,7 +30,9 @@ const Popup = (): JSX.Element => {
   console.log(openNoti);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    if (!localStorage.getItem("user")) {
+      setOpen(true);
+    }
   };
 
   const handleClose = () => {
@@ -56,7 +58,7 @@ const Popup = (): JSX.Element => {
 
   return (
     <div>
-      <IconButton style={{ marginRight: "20px" }} onClick={handleClickOpen}>
+      <IconButton onClick={handleClickOpen}>
         <PersonIcon />
       </IconButton>
       <Dialog open={open} onClose={handleClose}>

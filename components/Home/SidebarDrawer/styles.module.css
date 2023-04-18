@@ -9,3 +9,9 @@
     text-transform: uppercase;
     padding: 20px;
 }
+
+.textNavigate {
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+}
