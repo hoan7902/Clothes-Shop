@@ -86,12 +86,13 @@ const RatingBox = ({
       >
         ĐÁNH GIÁ MỨC ĐỘ HÀI LÒNG CỦA BẠN VỀ SẢN PHẨM
       </Typography>
-      <Stack direction={"row"}>
-        <Stack width={"30%"} direction={"row"} alignItems={"center"} gap={4}>
+      <Stack direction={"row"} justifyContent="space-between">
+        <Stack width={"50%"} direction={"row"} alignItems={"center"} >
           <AccountCircleOutlinedIcon fontSize={"large"} />
           <Typography
             fontSize={{ xs: "1rem", md: "1.125rem" }}
             lineHeight={{ xs: "1.5rem", md: "1.75rem" }}
+            padding="10px"
           >
             {name}
           </Typography>
@@ -99,7 +100,7 @@ const RatingBox = ({
         <Divider
           flexItem
           orientation="vertical"
-          sx={{ borderLeft: "0.05px solid black" }}
+          sx={{ borderLeft: "0.05px solid black"}}
         />
         <Stack
           width={"50%"}
