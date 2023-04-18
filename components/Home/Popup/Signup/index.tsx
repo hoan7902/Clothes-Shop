@@ -18,7 +18,7 @@ const Signup: React.FC<Props> = ({
   setOpenNoti,
   setStatusAlert,
   setMessageAlert,
-  setIsLogin
+  setIsLogin,
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

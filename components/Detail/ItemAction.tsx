@@ -45,7 +45,6 @@ const ItemAction = ({
   );
   const [open, setOpen] = useState(false);
   const [iOpen, setIOpen] = useState(false);
-  console.log("check ItemAction", sizes[selectedItem].sizeName);
   const handleClick = async () => {
     if (localStorage.getItem("user")) {
       // có dữ liệu người dùng được lưu trữ trong localStorage
@@ -56,18 +55,19 @@ const ItemAction = ({
           quantity: "1",
         })
       )
-        .then((response: AxiosResponse<CartResponse>) => {
-          console.log(response.data); // lấy giá trị dữ liệu từ response
-          setStatusAlert("success");
-          setMessageAlert(response.data.message);
-          setOpenNoti(true);
-          needPush = true;
+        .then((response?: AxiosResponse<CartResponse>) => {
+          if(response) {
+            setStatusAlert("success");
+            setMessageAlert(response?.data.message);
+            setOpenNoti(true);
+            needPush = true;
+          }
         })
         .catch((error) => {
           console.error(error);
           setStatusAlert("error");
           console.log(error, "ddd");
-          setMessageAlert(error.response.data.message);
+          setMessageAlert(error.response?.data.message);
           setOpenNoti(true);
           needPush = false;
         });
@@ -80,132 +80,131 @@ const ItemAction = ({
     setIOpen(true);
   };
   return (
-    <Box>
-      <Stack
-        direction={"row"}
-        gap={"20px"}
-        width={"100%"}
-        marginLeft={{ xs: "-40.5px", md: "0px" }}
-      >
-        <AuthDialog open={open} setOpen={setOpen} />
-        <InfoDialog open={iOpen} setOpen={setIOpen} />
-        {hasAvailableQuantity && (
-          <Button
-            fullWidth
-            variant="outlined"
-            startIcon={<AddShoppingCartIcon />}
-            sx={{
-              minWidth: "40.5%",
-              height: "73px",
-              color: "black",
+    <Stack
+      direction={"row"}
+      justifyContent="center"
+      alignItems="center"
+      gap={"20px"}
+      width={"100%"}
+      marginLeft={{ xs: "-40.5px", md: "0px" }}
+    >
+      <AuthDialog open={open} setOpen={setOpen} />
+      <InfoDialog open={iOpen} setOpen={setIOpen} />
+      {hasAvailableQuantity && (
+        <Button
+          fullWidth
+          variant="outlined"
+          startIcon={<AddShoppingCartIcon />}
+          sx={{
+            minWidth: "40.5%",
+            height: "73px",
+            color: "black",
+            border: "1px solid black",
+            width: "fit-content",
+            fontSize: { xs: "10px", md: "14px" },
+            "&:hover": {
+              opacity: "0.8",
               border: "1px solid black",
-              width: "fit-content",
-              fontSize: { xs: "10px", md: "14px" },
-              "&:hover": {
-                opacity: "0.8",
-                border: "1px solid black",
-              },
-            }}
-            onClick={() => {
-              handleClick();
-            }}
-          >
-            Thêm vào giỏ hàng
-          </Button>
-        )}
-        {!hasAvailableQuantity && (
-          <Button
-            fullWidth
-            variant="outlined"
-            startIcon={<RemoveShoppingCartIcon />}
-            sx={{
-              fontSize: { xs: "10px", md: "14px" },
-              minWidth: "40.5%",
-              height: "73px",
-              color: "black",
-              border: "1px solid black",
-              width: "fit-content",
-              "&:hover": {
-                opacity: "0.8",
-                background: "#ad2526",
-                color: "white",
-                border: "1px solid transparent",
-              },
-            }}
-          >
-            Tạm hết hàng
-          </Button>
-        )}
-        {!hasAvailableQuantity && (
-          <Button
-            fullWidth
-            variant="outlined"
-            startIcon={<BusinessCenterIcon />}
-            sx={{
-              fontSize: { xs: "10px", md: "14px" },
-              minWidth: "40.5%",
-              height: "73px",
-              color: "black",
-              border: "1px solid black",
-              width: "fit-content",
-              "&:hover": {
-                opacity: "0.8",
-                background: "#ad2526",
-                color: "white",
-                border: "1px solid transparent",
-              },
-            }}
-            onClick={() => {
-              handleInfo();
-            }}
-          >
-            Thông báo khi có hàng
-          </Button>
-        )}
-        {hasAvailableQuantity && (
-          <Button
-            fullWidth
-            variant="outlined"
-            startIcon={<LocalAtmIcon />}
-            sx={{
-              fontSize: { xs: "10px", md: "14px" },
-              minWidth: "40.5%",
-              height: "73px",
+            },
+          }}
+          onClick={() => {
+            handleClick();
+          }}
+        >
+          Thêm vào giỏ hàng
+        </Button>
+      )}
+      {!hasAvailableQuantity && (
+        <Button
+          fullWidth
+          variant="outlined"
+          startIcon={<RemoveShoppingCartIcon />}
+          sx={{
+            fontSize: { xs: "10px", md: "14px" },
+            minWidth: "40.5%",
+            height: "73px",
+            color: "black",
+            border: "1px solid black",
+            width: "fit-content",
+            "&:hover": {
+              opacity: "0.8",
+              background: "#ad2526",
               color: "white",
               border: "1px solid transparent",
-              width: "fit-content",
-              background: "#ad2526",
-              "&:hover": {
-                opacity: "0.8",
-                background: "#ad2526",
-                color: "white",
-                border: "1px solid transparent",
-              },
-            }}
-            onClick={async () => {
-              await handleClick();
-              console.log(needPush, "needPush");
-              if (needPush) router.push("/checkout");
-            }}
-          >
-            Mua ngay
-          </Button>
-        )}
-        <Snackbar
-          open={openNoti}
-          autoHideDuration={null}
-          onClose={handleCloseNoti}
+            },
+          }}
         >
-          <Alert
-            onClose={handleCloseNoti}
-            severity={statusAlert}
-            sx={{ width: "100%" }}
-          >
-            {messageAlert}
-          </Alert>
-        </Snackbar>
-      </Stack>
-    </Box>
+          Tạm hết hàng
+        </Button>
+      )}
+      {!hasAvailableQuantity && (
+        <Button
+          fullWidth
+          variant="outlined"
+          startIcon={<BusinessCenterIcon />}
+          sx={{
+            fontSize: { xs: "10px", md: "14px" },
+            minWidth: "40.5%",
+            height: "73px",
+            color: "black",
+            border: "1px solid black",
+            width: "fit-content",
+            "&:hover": {
+              opacity: "0.8",
+              background: "#ad2526",
+              color: "white",
+              border: "1px solid transparent",
+            },
+          }}
+          onClick={() => {
+            handleInfo();
+          }}
+        >
+          Thông báo khi có hàng
+        </Button>
+      )}
+      {hasAvailableQuantity && (
+        <Button
+          fullWidth
+          variant="outlined"
+          startIcon={<LocalAtmIcon />}
+          sx={{
+            fontSize: { xs: "10px", md: "14px" },
+            minWidth: "40.5%",
+            height: "73px",
+            color: "white",
+            border: "1px solid transparent",
+            width: "fit-content",
+            background: "#ad2526",
+            "&:hover": {
+              opacity: "0.8",
+              background: "#ad2526",
+              color: "white",
+              border: "1px solid transparent",
+            },
+          }}
+          onClick={async () => {
+            await handleClick();
+            if (needPush) router.push("/checkout");
+          }}
+        >
+          Mua ngay
+        </Button>
+      )}
+      <Snackbar
+        open={openNoti}
+        autoHideDuration={null}
+        onClose={handleCloseNoti}
+      >
+        <Alert
+          onClose={handleCloseNoti}
+          severity={statusAlert}
+          sx={{ width: "100%" }}
+        >
+          {messageAlert}
+        </Alert>
+      </Snackbar>
+    </Stack>
   );
 };
 

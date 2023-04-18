@@ -27,10 +27,8 @@ const Popup = (): JSX.Element => {
   const [statusAlert, setStatusAlert] = useState<AlertColor>("success");
   const [messageAlert, setMessageAlert] = useState("Cập nhật thành công");
 
-  console.log(openNoti);
-
   const handleClickOpen = () => {
-    if(!localStorage.getItem("user")) {
+    if (!localStorage.getItem("user")) {
       setOpen(true);
     }
   };

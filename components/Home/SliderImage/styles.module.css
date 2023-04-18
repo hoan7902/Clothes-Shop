@@ -21,6 +21,7 @@
     left: 0; /* position the image at the left of the div */
     bottom: 0;
     right: 0;
+    object-fit: cover;
 }
 
 .slider {

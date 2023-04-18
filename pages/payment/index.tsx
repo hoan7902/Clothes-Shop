@@ -16,8 +16,8 @@ export default function Checkout() {
   const fetchData = async () => {
     if (id) {
       const response = await getOrderById(id);
-      setListProduct(response.data.data.products);
-      setCost(response.data.data.cost);
+      setListProduct(response?.data.data.products);
+      setCost(response?.data.data.cost);
     }
   };
   useEffect(() => {

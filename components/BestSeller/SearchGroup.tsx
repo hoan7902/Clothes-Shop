@@ -1,8 +1,10 @@
 import { Stack, Button, Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import styles from "./style.module.css"
+
 const SearchGroup = () => {
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState("Mặc định");
   const router = useRouter();
 
   function handleSortByDefault() {
@@ -119,21 +121,28 @@ const SearchGroup = () => {
     >
       {["Mặc định", "Mới nhất", "Bán chạy", "Giá thấp", "Giá cao"].map(
         (title, idx) => (
-          <Button
-            variant="contained"
-            sx={{
-              borderRadius: "0.01",
-              bgcolor: selected === title ? "rgb(173,37,38)" : "white",
+          <button
+            // variant="contained"
+            // sx={{
+            //   borderRadius: "0.01",
+            //   bgcolor: selected === title ? "rgb(173,37,38)" : "white",
+            //   color: selected === title ? "white" : "black",
+            //   border: "1px solid transparent",
+            //   fontSize: { xs: "0.7rem", sm: "0.7rem" },
+            //   // boxShadow: "rgba(33,33,33,0.2) 0 0 11px 0px",
+            //   "&:hover": {
+            //     bgcolor: "rgb(173,37,38)",
+            //     color: "white",
+            //     border: "1px solid transparent",
+            //     opacity: "0.8",
+            //   },
+            // }}
+            className={styles.button}
+            style={{
+              backgroundColor: selected === title ? "#ad2526" : "white",
               color: selected === title ? "white" : "black",
-              border: "1px solid transparent",
-              fontSize: { xs: "0.7rem", sm: "0.7rem" },
-              boxShadow: "rgba(33,33,33,0.2) 0 0 11px 0px",
-              "&:hover": {
-                bgcolor: "rgb(173,37,38)",
-                color: "white",
-                border: "1px solid transparent",
-                opacity: "0.8",
-              },
+              borderColor: selected === title ? "#ad2526" : "black",
+              opacity: selected === title ? "0.82" : "1"
             }}
             onClick={() => {
               setSelected(title);
@@ -156,7 +165,7 @@ const SearchGroup = () => {
             }}
           >
             {title}
-          </Button>
+          </button>
         )
       )}
     </Box>

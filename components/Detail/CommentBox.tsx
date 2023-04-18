@@ -2,19 +2,19 @@ import { getRating } from "@/pages/api";
 import { Box, Typography, Stack, Button, Divider } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import { useEffect, useState } from "react";
+import { StyledRating } from "./RatingBox";
 const CommentBox = ({
   productId,
   change,
 }: {
   productId: string;
-  change: boolean;
+  change: number;
 }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     getRating(productId)
       .then((res) => {
-        console.log("Rating Product", res.data.data);
-        setData(res.data.data);
+        setData(res?.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -24,11 +24,9 @@ const CommentBox = ({
     <Box
       display={"flex"}
       flexDirection={"column"}
-      gap={10}
-      mt={3}
-      marginY={10}
-      marginX={3}
+      gap={2}
       width={"90%"}
+      my={3}
     >
       <Typography
         variant="h6"
@@ -52,18 +50,13 @@ const CommentBox = ({
               avatar: string;
             }) => (
               <Box>
-                <Box display={"flex"} gap={20} alignItems={"center"} my={1}>
+                <Box display={"flex"} gap={20} alignItems={"center"}>
                   <Stack alignItems={"center"}>
                     <Typography>{item.name}</Typography>
-                    <Rating value={item.star} readOnly max={5} />
+                    <StyledRating value={item.star} readOnly max={5} />
                   </Stack>
                   <Typography>{item.comment}</Typography>
                 </Box>
-                <Divider
-                  orientation="horizontal"
-                  flexItem
-                  sx={{ borderLeft: "0.05px solid black" }}
-                ></Divider>
               </Box>
             )
           )

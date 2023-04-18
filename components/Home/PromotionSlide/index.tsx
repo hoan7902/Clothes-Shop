@@ -16,7 +16,7 @@ const PromotionSlide = ({ title = "No name" }: Props): JSX.Element => {
 
   const fetchData = async () => {
     const response = await getAllProducts();
-    setProducts(response.data.data);
+    setProducts(response?.data.data);
   };
 
   useEffect(() => {

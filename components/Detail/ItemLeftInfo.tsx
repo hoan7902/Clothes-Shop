@@ -14,7 +14,6 @@ const ItemLeftInfo = ({ images }: { images: string[] }) => {
       behavior: "smooth",
     });
   }
-  console.log(images);
   return (
     <Box paddingX={{ xs: "10px", md: "0px" }}>
       <Box width={"100%"}>

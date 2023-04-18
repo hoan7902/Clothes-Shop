@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Layout from "../components/Layout";
 import SliderImage from "../components/Home/SliderImage";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import Breadcrumb from "@/components/BestSeller/Breadscrumb";
 import Fillter from "@/components/BestSeller/Fillter";
 import Result from "@/components/BestSeller/Result";
@@ -35,7 +35,7 @@ export default function BestSeller({
             lg: "1500px",
             xl: "1567px",
           }}
-          mx="auto"
+          mx="6%"
           pb="3rem"
           pl={{ xs: "1rem", sm: "0rem" }}
         >
@@ -46,9 +46,11 @@ export default function BestSeller({
             flexDirection={{ xs: "column", md: "row" }}
           >
             <Fillter categories={categories} />
-            <Result title="sản phẩm bán chạy" setTotal={setTotalPage} />
+            <Box display="flex" flexDirection="column" justifyContent="center" width={{ xs: "100%", md: "74%" }} mt={{ xs: "10px", md: "0px" }}>
+              <Result title="sản phẩm bán chạy" setTotal={setTotalPage} />
+              <Pagi total={totalPage} />
+            </Box>
           </Box>
-          <Pagi total={totalPage} />
         </Box>
       </Layout>
     </>
@@ -62,7 +64,7 @@ export const getStaticProps: GetStaticProps<{
   let res: never[] = [];
   await getCategories()
     .then((response) => {
-      res = response.data.categories;
+      res = response?.data.categories;
     })
     .catch((error) => {
       console.log(error);

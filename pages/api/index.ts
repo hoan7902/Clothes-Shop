@@ -30,15 +30,25 @@ export const updateUser = async (dataForm: string) => {
 }
 
 export const updateAvatar = async (formData: any) => {
-  const response = await API.post("/api/user/avatar", formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-  return response;
+  try {
+    const response = await API.post("/api/user/avatar", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response;
+  }
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const getMyOrders = async (status: string, limit: any = 10, frame: any = 1) => {
-  const response = await API.get(`api/order/my-orders?status=${status}&limit=${limit}&frame=${frame}`);
-  return response;
+  try {
+    const response = await API.get(`api/order/my-orders?status=${status}&limit=${limit}&frame=${frame}`);
+    return response;
+  }
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const signUpUser = async (dataForm: string) => {
@@ -60,67 +70,122 @@ export const getUserById = async (userId: any) => {
 }
 
 export const addCategory = async(category: any) => {
+  try {
     const response = await API.post("/api/category", category);
     return response;
+  } 
+  catch (error) {
+    return (error as AxiosError).response
+  } 
 }
 
 export const getCategories = async() => {
-  const response = await API.get("/api/categories");
-  return response;
+  try {
+    const response = await API.get("/api/categories");
+    return response;
+  }
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const getAllProducts = async () => {
-  const response = await API.get("/api/products");
-  return response;
+  try {
+    const response = await API.get("/api/products");
+    return response;
+  }
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const getProducts = async(params: any )=>{
+  try {
     const response = await API.get("/api/products",{ params: params });
     return response;
+  }  
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const getProduct = async(productId: any )=>{
+  try {
     const response = await API.get(`/api/product/${productId}`);
     return response;
+  } 
+  catch (error) {
+    return (error as AxiosError).response
+  } 
 }
 
 export const getOrderById = async (id: any) => {
-  const response = await API.get(`api/order/${id}`);
-  return response;
+  try {
+    const response = await API.get(`api/order/${id}`);
+    return response;
+  }
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const addtoCart = async(productId: any,params:any )=>{
-  console.log(`/api/cart/${productId}`,params)
-  const response = await API.post(`/api/cart/${productId}`, params );
-  return response;
+  try {
+    const response = await API.post(`/api/cart/${productId}`, params );
+    return response;
+  }
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const removeFromCart = async(productId: any,params:any )=>{
-  console.log(`delete /api/cart/${productId}/${params}`,params)
-  const response = await API.delete(`/api/cart/${productId}/${params}` );
-  return response;
+  try {
+    const response = await API.delete(`/api/cart/${productId}/${params}` );
+    return response;
+  }
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const addRating = async(productId: any, params: any )=>{
-  console.log(`/api/rating/${productId}`, params)
-  const response = await API.post(`/api/rating/${productId}`, params);
-  return response;
+  try {
+    const response = await API.post(`/api/rating/${productId}`, params);
+    return response;
+  }
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const getRating = async(productId: any )=>{
-  console.log(`/api/rating/${productId}`)
-  const response = await API.get(`/api/rating/${productId}`);
-  return response;
+  
+  try {
+    const response = await API.get(`/api/rating/${productId}`);
+    return response;
+  }
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const myCart = async()=>{
-  console.log(`api/cart/my-cart`)
-  const response = await API.get(`api/cart/my-cart`);
-  return response;
+  try {
+    const response = await API.get(`api/cart/my-cart`);
+    return response;
+  }
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }
 
 export const createAnOrder = async(params: any)=>{
-  console.log(`api/order/create`)
-  const response = await API.post(`api/order/create`,params);
-  return response;
+  try {
+    const response = await API.post(`api/order/create`,params);
+    return response;
+  }
+  catch (error) {
+    return (error as AxiosError).response
+  }
 }

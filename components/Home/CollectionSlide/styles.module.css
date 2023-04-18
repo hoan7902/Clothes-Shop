@@ -44,10 +44,15 @@
     color: #fff;
 }
 
+.container {
+}
+
+
 .item {
     width: 100%;
     height: 740px;
 }
+
 
 .wrapper__item {
     position: relative;
@@ -159,10 +164,9 @@
 
 .arrowSlickNext {
     position: absolute;
-    right: -50%;
+    right: 0px;
     top: 50% !important;
 }
-
 .arrowSlickNext::before {
     width: 100%;
     height: 100%;
@@ -185,27 +189,6 @@
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23fff" d="M176 465.9c-8.1 0-16.3-3.1-22.6-9.4-12.5-12.5-12.5-32.8 0-45.3L338.4 256 153.4 81.8c-12.5-12.5-12.5-32.8 0-45.3 12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3l-192 192C192.3 462.8 184.1 465.9 176 465.9z"/></svg>');
 }
 
-/* .arrowSlickBefore::before {
-    width: 100%;
-    height: 100%;
-    content: "" !important;
-    display: block;
-    position: absolute;
-    background-size: contain;
-    background-position: 50%;
-    background-position-x: 50%;
-    background-position-y: center;
-    background-repeat: no-repeat;
-    font-size: 0;
-    line-height: 1;
-    opacity: 1;
-    right: 0.1rem;
-    z-index: 10;
-    transform: translateX(-50%);
-    color: #fff !important;
-    background-image: url('');
-} */
-
 .arrowSlickBefore::before {
     width: 100%;
     height: 100%;
@@ -224,6 +207,7 @@
     z-index: 10;
     transform: translateX(-50%);
     color: #fff !important;
+    background-image: url('');
 }
 
 @media only screen and (max-width: 990px) {
@@ -259,5 +243,4 @@
         scale: 2;
         background-image: url("") !important;
     }
-
 }

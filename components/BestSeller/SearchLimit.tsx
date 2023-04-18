@@ -30,8 +30,8 @@ const SearchLimit = () => {
       <Typography
         variant="h6"
         sx={{
-          fontSize: "14px",
-          fontWeight: 300,
+          fontSize: "1rem",
+          fontWeight: 400,
           lineHeight: "20px",
           marginLeft: "8px",
           maxWidth: "260px",
@@ -48,8 +48,8 @@ const SearchLimit = () => {
           autoWidth
           label="Age"
           sx={{
-            height: "50px",
-            border: "2px solid black",
+            height: "35px",
+            border: "1px solid #444",
             boxShadow: "none",
             ".MuiOutlinedInput-notchedOutline": { border: 0 },
             "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
@@ -70,8 +70,8 @@ const SearchLimit = () => {
       <Typography
         variant="h6"
         sx={{
-          fontSize: "14px",
-          fontWeight: 300,
+          fontSize: "1rem",
+          fontWeight: 400,
           lineHeight: "20px",
           marginLeft: "8px",
           maxWidth: "260px",

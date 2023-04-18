@@ -31,7 +31,8 @@ const ItemRightInfo = ({
   const [selectedItem, setSelectedItem] = useState(0);
   return (
     <Box
-      width={{ xs: "100%", sm: "100%", md: "66.667%" }}
+      // width={{ xs: "100%", sm: "100%", md: "66.667%" }}
+      width="100%"
       paddingLeft={{ xs: "25px", md: "100px" }}
       marginTop={"10px"}
     >

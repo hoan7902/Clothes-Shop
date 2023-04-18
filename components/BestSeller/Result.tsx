@@ -45,12 +45,12 @@ const Result = ({ title, setTotal }: ResultProps) => {
   const fetchData = async (query: any) => {
     await getProducts(query)
       .then((res) => {
-        setAllProduct(res.data.data);
+        setAllProduct(res?.data.data);
         let limit;
         if (router.query.limit && typeof router.query.limit == "string")
           limit = parseInt(router.query.limit);
         else limit = 24;
-        setTotal(Math.floor(res.data.count / limit) + 1);
+        setTotal(Math.floor(res?.data.count / limit) + 1);
         return res;
       })
       .catch((error) => console.log(error));
@@ -61,7 +61,7 @@ const Result = ({ title, setTotal }: ResultProps) => {
   }, [router.query]);
 
   return (
-    <Box width={{ xs: "100%", md: "74%" }} mt={{ xs: "10px", md: "0px" }}>
+    <>
       <Title title="sản phẩm bán chạy" />
       <Stack
         direction={{ xs: "column", md: "row" }}
@@ -107,7 +107,7 @@ const Result = ({ title, setTotal }: ResultProps) => {
             );
           })}
       </Box>
-    </Box>
+    </>
   );
 };
 

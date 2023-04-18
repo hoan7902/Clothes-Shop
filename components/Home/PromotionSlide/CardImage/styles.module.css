@@ -6,13 +6,17 @@
     width: 210px;
     height: 325px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
 .image {
     width: 90%;
     height: 300px;
-    /* object-fit: contain; */
+    object-fit: cover;
 }
 
 .name {

@@ -38,7 +38,6 @@ const SliderBanner: React.FC = () => {
       />
     );
   }
-
   function SamplePrevArrow(props: any) {
     const { className, style, onClick } = props;
     return (

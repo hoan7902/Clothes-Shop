@@ -16,8 +16,8 @@ const OrderCompleteItem: React.FC<Props> = ({ id, size, quantity, price }) => {
 
   const fetchData = async () => {
     const response = await getProduct(id);
-    setName(response.data.name);
-    setImage(response.data.images[0]);
+    setName(response?.data.name);
+    setImage(response?.data.images[0]);
   };
 
   useEffect(() => {

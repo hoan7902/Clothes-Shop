@@ -10,7 +10,8 @@ const Title = ({ title }: TitleProps) => {
         fontSize={{ xs: "1rem", sm: "14px", md: "16px" }}
         lineHeight={{ sm: "18px", md: "22px" }}
         textTransform="uppercase"
-        color="rgb(173, 37, 38)"
+        color="#ad2526"
+        fontWeight="500"
       >
         {title}
       </Typography>

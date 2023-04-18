@@ -15,7 +15,7 @@ export const UserContext = createContext({
   handleClick: () => {},
 });
 const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
-  const [change, setChange] = useState(false);
+  const [change, setChange] = useState(0);
   const [userChange, setUserChange] = useState(0);
   const handleClick = () => {
     setUserChange(userChange + 1);
@@ -24,22 +24,19 @@ const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
     <UserContext.Provider value={{ userChange, handleClick }}>
       <Layout>
         <Box
-          width={"100%"}
+          width="100%"
           mt="85px"
-          maxWidth={{
-            xs: "540px",
-            sm: "800px",
-            md: "1000px",
-            lg: "1500px",
-            xl: "1567px",
-          }}
-          mx="auto"
-          pb="3rem"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          overflow="hidden"
         >
           <Box
             display="flex"
             flexDirection={{ xs: "column", md: "row" }}
             pb="3rem"
+            width="80%"
           >
             <Box
               width={{ xs: "100%", sm: "100%", md: "33.333%" }}
@@ -47,13 +44,15 @@ const Items = ({ productInfo }: { productInfo: ProductInfoTyp }) => {
             >
               <ItemLeftInfo images={productInfo.images} />
             </Box>
-            <ItemRightInfo
-              productId={productInfo.productId}
-              name={productInfo.name}
-              numberRating={productInfo.numberRating}
-              ratingPoint={productInfo.ratingPoint}
-              sizes={productInfo.sizes}
-            />
+            <Box width="100%">
+              <ItemRightInfo
+                productId={productInfo.productId}
+                name={productInfo.name}
+                numberRating={productInfo.numberRating}
+                ratingPoint={productInfo.ratingPoint}
+                sizes={productInfo.sizes}
+              />
+            </Box>
           </Box>
           <Divider
             orientation="horizontal"
@@ -80,7 +79,7 @@ export const getStaticProps: GetStaticProps<{
 }> = async (context) => {
   let res = null;
   if (context !== undefined && context.params !== undefined) {
-    res = (await getProduct(context.params.productId)).data;
+    res = (await getProduct(context.params.productId))?.data;
   }
 
   return {
@@ -92,7 +91,7 @@ export const getStaticProps: GetStaticProps<{
 export async function getStaticPaths() {
   const result = await getProducts("");
 
-  const paths = result.data.data.map((product: ProductTyp) => ({
+  const paths = result?.data.data.map((product: ProductTyp) => ({
     params: { productId: product.productId.toString() },
   }));
 

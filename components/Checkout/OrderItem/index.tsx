@@ -48,7 +48,7 @@ const OrderItem = () => {
   useEffect(() => {
     myCart()
       .then((res) => {
-        setCart(res.data.data);
+        setCart(res?.data.data);
       })
       .catch((err) => {
         console.log(err.data);
@@ -58,7 +58,6 @@ const OrderItem = () => {
   const [phone, setPhone] = useState("");
   const [note, setNote] = useState("");
   const [payment, setPayment] = useState("Cash");
-  console.log(address, phone, note, payment);
   return (
     <>
       <Grid
@@ -262,12 +261,11 @@ const OrderItem = () => {
                 products: carts,
               })
                 .then((res) => {
-                  console.log("tao order thanh cong", res.data.orderId);
                   setStatusAlert("success");
-                  setMessageAlert(res.data.message);
+                  setMessageAlert(res?.data.message);
                   setOpenNoti(true);
                   setChange(change + 1);
-                  const query = { id: res.data.orderId };
+                  const query = { id: res?.data.orderId };
                   router.push({
                     pathname: "/payment",
                     query,
@@ -275,8 +273,7 @@ const OrderItem = () => {
                 })
                 .catch((error) => {
                   setStatusAlert("error");
-                  console.log(error.response.data.message);
-                  setMessageAlert(error.response.data.message);
+                  setMessageAlert(error.response?.data.message);
                   setOpenNoti(true);
                   setChange(change + 1);
                 });
@@ -284,15 +281,6 @@ const OrderItem = () => {
           >
             Đặt hàng
           </button>
-          <Stack flexDirection="row" justifyContent="space-between">
-            <img
-              className="next"
-              src="https://lep.vn/icons/icon-go-back-red.svg"
-            />
-            <Typography pl="1rem" color="#ad2526;">
-              Tiếp tục mua sắm
-            </Typography>
-          </Stack>
         </Stack>
         <Snackbar
           open={openNoti}

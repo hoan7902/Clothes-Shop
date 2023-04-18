@@ -27,7 +27,7 @@ const PersonalOrder: React.FC<Props> = () => {
 
   const fetchData = async () => {
     const response = await getMyOrders(activeStatus, limit, page);
-    setOrderData(response.data.data);
+    setOrderData(response?.data.data);
     setTotal(response?.data.count);
   };
 
