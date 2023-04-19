@@ -46,7 +46,14 @@ const SidebarDrawer = ({
             Trang chủ
           </Typography>
         </Link>
-        <Link className={styles.textNavigate} href="/best-seller">
+        <Link
+          className={styles.headerLeft__link__item}
+          href={{
+            pathname: "/best-seller",
+            query: { order_by: "desc", sort_by: "order_count" },
+          }}
+          style={{ color: "#000" }}
+        >
           <Typography
             sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
             className={styles.headerLeft__item}
@@ -54,7 +61,14 @@ const SidebarDrawer = ({
             Best Seller
           </Typography>
         </Link>
-        <Link className={styles.textNavigate} href="/best-seller">
+        <Link
+          className={styles.headerLeft__link__item}
+          href={{
+            pathname: "/shop-products",
+            query: { order_by: "asc", sort_by: "created_at" },
+          }}
+          style={{ color: "#000" }}
+        >
           <Typography
             sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
             className={styles.headerLeft__item}

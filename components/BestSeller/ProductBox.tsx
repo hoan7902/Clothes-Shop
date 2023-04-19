@@ -19,8 +19,8 @@ const ProductBox = ({ images, name, price }: ProductBoxProps) => {
         height={{ xs: "50%", sm: "60%", md: "82%" }}
       >
         <Box
-          width={{ xs: "300px", sm: "400px", md: "250px" }}
-          height={{ xs: "500px", sm: "300px", md: "400px" }}
+          width={{ xs: "250px", sm: "400px", md: "250px" }}
+          height={{ xs: "400px", sm: "500px", md: "400px" }}
           sx={{
             backgroundImage: `url(${images[0]})`,
             backgroundRepeat: "no-repeat",
@@ -34,10 +34,10 @@ const ProductBox = ({ images, name, price }: ProductBoxProps) => {
           style={{}}
         ></Box>
       </Box>
-      <Box>
+      <Box mt="13px">
         <Typography
           variant="h4"
-          fontSize={{ xs: "10px", sm: "15px", md: "18px" }}
+          fontSize="1.2rem"
           lineHeight={"20px"}
           textOverflow={"ellipsis"}
           fontFamily="Open Sans"
@@ -51,7 +51,7 @@ const ProductBox = ({ images, name, price }: ProductBoxProps) => {
         </Typography>
         <Box
           component="p"
-          fontSize={{ xs: "10px", sm: "15px", md: "18px" }}
+          fontSize="1rem"
           lineHeight={"20px"}
           fontWeight={"500"}
           textAlign={{ xs: "center", md: "start" }}

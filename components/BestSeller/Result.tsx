@@ -45,7 +45,6 @@ const Result = ({ title, setTotal }: ResultProps) => {
   const [allProducts, setAllProduct] = useState<ProductTyp[]>([]);
 
   const fetchData = async (query: any) => {
-    console.log("check query: ", query);
     await getProducts(query)
       .then((res) => {
         setAllProduct(res?.data.data);
@@ -59,19 +58,9 @@ const Result = ({ title, setTotal }: ResultProps) => {
       .catch((error) => console.log(error));
   };
 
-  // useEffect(() => {
-  //   if (router.pathname === "/best-seller") {
-  //     fetchData({ order_by: "desc", sort_by: "order_count" });
-  //   }
-  //   else if (router.pathname === "/shop-products") {
-  //     fetchData({ order_by: 'asc', sort_by: 'created_at'});
-  //   }
-  // }, []);
-
   useEffect(() => {
     fetchData(router.query);
   }, [router.query]);
-
 
   return (
     <>

@@ -131,20 +131,32 @@ const Header: React.FC = () => {
               Trang chủ
             </Typography>
           </Link>
-          <Link className={styles.headerLeft__link__item} href="/shop-products">
-            <Typography
-              sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
-              className={styles.headerLeft__item}
-            >
-              Sản phẩm
-            </Typography>
-          </Link>
-          <Link className={styles.headerLeft__link__item} href="/best-seller">
+          <Link
+            className={styles.headerLeft__link__item}
+            href={{
+              pathname: "/best-seller",
+              query: { order_by: "desc", sort_by: "order_count" },
+            }}
+          >
             <Typography
               sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
               className={styles.headerLeft__item}
             >
               Best Seller
+            </Typography>
+          </Link>
+          <Link
+            className={styles.headerLeft__link__item}
+            href={{
+              pathname: "/shop-products",
+              query: { order_by: "asc", sort_by: "created_at" },
+            }}
+          >
+            <Typography
+              sx={{ fontSize: { sm: "0.7rem", md: "1rem" } }}
+              className={styles.headerLeft__item}
+            >
+              Sản phẩm
             </Typography>
           </Link>
           <Link className={styles.headerLeft__link__item} href="/introduction">
@@ -160,11 +172,7 @@ const Header: React.FC = () => {
       {!isMobile && (
         <Link href="/">
           <div className={styles.headerCenter}>
-            <Image
-              src={logoImage}
-              alt="Lep logo"
-              height={42}
-            />
+            <Image src={logoImage} alt="Lep logo" height={42} />
           </div>
         </Link>
       )}
