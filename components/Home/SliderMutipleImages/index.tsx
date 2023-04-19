@@ -83,55 +83,6 @@ const SliderMutipleImages: React.FC<Props> = ({
             />
           </div>
         ))}
-      {/* <div className={styles.item}>
-        <CardImage
-          src="https://cdn.lep.vn/2022/10/images/banners/1669012111241-1667911936656-p1.jpeg"
-          name="Váy lụa 2 dây cổ đổ 1VA01740XT"
-          price="650.000đ"
-        />
-      </div>
-      <div className={styles.item}>
-        <CardImage
-          src="https://cdn.lep.vn/2022/10/images/banners/1669012111241-1667911936656-p1.jpeg"
-          name="Váy lụa 2 dây cổ đổ 1VA01740XT"
-          price="650.000đ"
-        />
-      </div>
-      <div className={styles.item}>
-        <CardImage
-          src="https://cdn.lep.vn/2022/10/images/banners/1669012111241-1667911936656-p1.jpeg"
-          name="Váy lụa 2 dây cổ đổ 1VA01740XT"
-          price="650.000đ"
-        />
-      </div>
-      <div className={styles.item}>
-        <CardImage
-          src="https://cdn.lep.vn/2022/10/images/banners/1669012111241-1667911936656-p1.jpeg"
-          name="Váy lụa 2 dây cổ đổ 1VA01740XT"
-          price="650.000đ"
-        />
-      </div>
-      <div className={styles.item}>
-        <CardImage
-          src="https://cdn.lep.vn/2022/10/images/banners/1669012111241-1667911936656-p1.jpeg"
-          name="Váy lụa 2 dây cổ đổ 1VA01740XT"
-          price="650.000đ"
-        />
-      </div>
-      <div className={styles.item}>
-        <CardImage
-          src="https://cdn.lep.vn/2022/10/images/banners/1669012111241-1667911936656-p1.jpeg"
-          name="Váy lụa 2 dây cổ đổ 1VA01740XT"
-          price="650.000đ"
-        />
-      </div>
-      <div className={styles.item}>
-        <CardImage
-          src="https://cdn.lep.vn/2022/10/images/banners/1669012111241-1667911936656-p1.jpeg"
-          name="Váy lụa 2 dây cổ đổ 1VA01740XT"
-          price="650.000đ"
-        />
-      </div> */}
     </Slider>
   );
 };

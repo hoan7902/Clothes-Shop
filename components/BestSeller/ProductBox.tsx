@@ -53,7 +53,7 @@ const ProductBox = ({ images, name, price }: ProductBoxProps) => {
           component="p"
           fontSize="1rem"
           lineHeight={"20px"}
-          fontWeight={"500"}
+          fontWeight={"400"}
           textAlign={{ xs: "center", md: "start" }}
         >
           {formatNumber(price)}
