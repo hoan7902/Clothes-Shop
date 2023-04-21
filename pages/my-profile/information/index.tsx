@@ -12,14 +12,14 @@ import { useState } from "react";
 export default function Information() {
   return (
     <>
-        <Layout>
-          <Box className="container">
-            <Stack sx={{ flexDirection: { xs: "column", md: "row" } }}>
-              <Sidebar />
-              <PersonalInformation />
-            </Stack>
-          </Box>
-        </Layout>
+      <Layout>
+        <Box className="container">
+          <Stack sx={{ flexDirection: { xs: "column", md: "row" } }}>
+            <Sidebar />
+            <PersonalInformation />
+          </Stack>
+        </Box>
+      </Layout>
     </>
   );
 }

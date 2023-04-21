@@ -21,13 +21,7 @@ const CommentBox = ({
       });
   }, [change]);
   return (
-    <Box
-      display={"flex"}
-      flexDirection={"column"}
-      gap={2}
-      width={"90%"}
-      my={3}
-    >
+    <Box display={"flex"} flexDirection={"column"} gap={2} width={"90%"} my={3}>
       <Typography
         variant="h6"
         fontWeight={400}
@@ -41,14 +35,17 @@ const CommentBox = ({
       <Stack>
         {data.length !== 0 ? (
           data.map(
-            (item: {
-              userId: number;
-              name: string;
-              comment: string;
-              time: string;
-              star: number;
-              avatar: string;
-            }, index) => (
+            (
+              item: {
+                userId: number;
+                name: string;
+                comment: string;
+                time: string;
+                star: number;
+                avatar: string;
+              },
+              index
+            ) => (
               <Box key={index}>
                 <Box display={"flex"} gap={20} alignItems={"center"}>
                   <Stack alignItems={"center"}>

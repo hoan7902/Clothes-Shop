@@ -6,8 +6,7 @@ import SliderImage from "../components/Home/SliderImage";
 export default function Home() {
   return (
     <>
-      <Layout>
-      </Layout>
+      <Layout></Layout>
     </>
   );
 }

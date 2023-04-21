@@ -1,7 +1,7 @@
-import { getOrderById } from '@/pages/api';
-import { Grid, Stack, Typography } from '@mui/material';
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import PersonalPopup from '../PersonalPopup';
+import { getOrderById } from "@/pages/api";
+import { Grid, Stack, Typography } from "@mui/material";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import PersonalPopup from "../PersonalPopup";
 
 interface OrderData {
   address: string;
@@ -69,12 +69,12 @@ const PersonalOrderItem: React.FC<Props> = ({ order }) => {
         </Grid>
         <Grid item xs={6} sm={4}>
           <Stack flexDirection="row" alignItems="center">
-            <PersonalPopup listProduct={listProduct} order={order}/>
+            <PersonalPopup listProduct={listProduct} order={order} />
           </Stack>
         </Grid>
       </Grid>
     </>
-  )
-}
+  );
+};
 
-export default PersonalOrderItem
+export default PersonalOrderItem;

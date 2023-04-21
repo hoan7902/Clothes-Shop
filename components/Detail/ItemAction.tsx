@@ -56,7 +56,7 @@ const ItemAction = ({
         })
       )
         .then((response?: AxiosResponse<CartResponse>) => {
-          if(response) {
+          if (response) {
             setStatusAlert("success");
             setMessageAlert(response?.data.message);
             setOpenNoti(true);

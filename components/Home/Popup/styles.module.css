@@ -1,20 +1,19 @@
 .wrapperPopup {
-    transition: all 1s ease;
-    display: flex;
-    flex-direction: column;
+  transition: all 1s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .headerTitle {
-    font-weight: 100;
-    font-size: 1.1rem;
+  font-weight: 100;
+  font-size: 1.1rem;
 }
 
 .headerTitle:hover {
-    color: var(--secondary-red);
-    cursor: pointer;
+  color: var(--secondary-red);
+  cursor: pointer;
 }
 
 .headerTitle:focus {
-    color: var(--secondary-red);
+  color: var(--secondary-red);
 }
-

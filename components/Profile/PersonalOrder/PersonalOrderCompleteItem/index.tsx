@@ -10,7 +10,12 @@ interface Props {
   price: string;
 }
 
-const PersonalOrderCompleteItem: React.FC<Props> = ({ id, size, quantity, price }) => {
+const PersonalOrderCompleteItem: React.FC<Props> = ({
+  id,
+  size,
+  quantity,
+  price,
+}) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
 
