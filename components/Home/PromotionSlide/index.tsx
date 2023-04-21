@@ -35,10 +35,10 @@ const PromotionSlide = ({ title = "No name" }: Props): JSX.Element => {
       <Link href="/best-seller">
         <button className={styles.button}>Shop Now</button>
       </Link>
-      <Box sx={{ marginTop: "20px", width: { md: "950px", xs: "375px" } }}>
+      <Box sx={{ marginTop: "20px", width: "85%" }}>
         <SliderMutipleImages
           products={products}
-          numberSlideToShow={isTablet ? (isMobile ? 2 : 3) : 4}
+          numberSlideToShow={isTablet ? (isMobile ? 1 : 3) : 4}
           numberSlideToScroll={isTablet ? 1 : 2}
         />
       </Box>

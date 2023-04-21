@@ -2,9 +2,8 @@
     position: relative;
     color: #fff;
     text-align: center;
-    /* margin: 15px; */
     width: 210px;
-    height: 325px;
+    /* height: 425px; */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -14,8 +13,8 @@
 
 
 .image {
-    width: 90%;
-    height: 300px;
+    width: 80%;
+    height: 370px;
     object-fit: cover;
 }
 
