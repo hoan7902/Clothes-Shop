@@ -50,7 +50,7 @@ const RatingBox = ({
     const user = localStorage.getItem("user");
     if (user) {
       const userData = JSON.parse(user);
-      setName(userData.data.name);
+      setName(userData?.data?.name);
     }
   }, [userChange]);
   const handleCloseNoti = (
@@ -87,7 +87,7 @@ const RatingBox = ({
         ĐÁNH GIÁ MỨC ĐỘ HÀI LÒNG CỦA BẠN VỀ SẢN PHẨM
       </Typography>
       <Stack direction={"row"} justifyContent="space-between">
-        <Stack width={"50%"} direction={"row"} alignItems={"center"} >
+        <Stack width={"50%"} direction={"row"} alignItems={"center"}>
           <AccountCircleOutlinedIcon fontSize={"large"} />
           <Typography
             fontSize={{ xs: "1rem", md: "1.125rem" }}
@@ -100,7 +100,7 @@ const RatingBox = ({
         <Divider
           flexItem
           orientation="vertical"
-          sx={{ borderLeft: "0.05px solid black"}}
+          sx={{ borderLeft: "0.05px solid black" }}
         />
         <Stack
           width={"50%"}

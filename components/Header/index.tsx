@@ -80,10 +80,10 @@ const Header: React.FC = () => {
   const fetchData = async () => {
     if (localStorage.getItem("user")) {
       const data = JSON.parse(localStorage.getItem("user") || "");
-      const dataUser = await getUserById(data.data.userId);
+      const dataUser = await getUserById(data?.data?.userId);
       if (dataUser) {
-        if (dataUser.data.user.name) {
-          setName(dataUser.data.user.name);
+        if (dataUser?.data?.user?.name) {
+          setName(dataUser?.data?.user?.name);
         }
       }
     }

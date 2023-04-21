@@ -1,6 +1,5 @@
 const Breadcrumb: React.FC = () => {
-    return <>
-    </>;
-}
- 
+  return <></>;
+};
+
 export default Breadcrumb;

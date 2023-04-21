@@ -11,7 +11,12 @@ export default function Collection() {
     <>
       <Layout>
         <Box className="container">
-          <Stack width="100%" height="100%" justifyContent="center" className={styles.bannerContainer}>
+          <Stack
+            width="100%"
+            height="100%"
+            justifyContent="center"
+            className={styles.bannerContainer}
+          >
             <Typography className={styles.bannerText}>
               Bộ Sưu Tập Thời Trang được Lep' chọn lọc để phù hợp nhất với xu
               hướng thời trang trên Thế giới
@@ -22,10 +27,10 @@ export default function Collection() {
           </Stack>
 
           <Stack>
-            <CollectionItem/>
-            <CollectionItem/>
-            <CollectionItem/>
-            <CollectionItem/>
+            <CollectionItem />
+            <CollectionItem />
+            <CollectionItem />
+            <CollectionItem />
           </Stack>
         </Box>
       </Layout>

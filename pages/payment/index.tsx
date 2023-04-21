@@ -94,7 +94,7 @@ export default function Checkout() {
                   className="next"
                   src="https://lep.vn/icons/icon-go-back-red.svg"
                 />
-                <Link href="/best-seller" style={{ textDecoration: "none"}}>
+                <Link href="/best-seller" style={{ textDecoration: "none" }}>
                   <Typography pl="1rem" color="#ad2526;">
                     Tiếp tục mua sắm
                   </Typography>

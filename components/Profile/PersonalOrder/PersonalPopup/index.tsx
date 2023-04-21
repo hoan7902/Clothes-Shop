@@ -100,7 +100,12 @@ const PersonalPopup: React.FC<Props> = ({ listProduct, order }) => {
                     price={product.price}
                   />
                 ))}
-              <Stack flexDirection="row" justifyContent="space-between" alignItems="center" m="10px 0">
+              <Stack
+                flexDirection="row"
+                justifyContent="space-between"
+                alignItems="center"
+                m="10px 0"
+              >
                 <Typography
                   sx={{ width: { xs: "50%", md: "30%" } }}
                   textAlign="center"

@@ -3,7 +3,7 @@
 import Footer from "../Footer";
 import Header from "../Header";
 import { useState } from "react";
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 
 interface LayoutProps {
   children: React.ReactNode;

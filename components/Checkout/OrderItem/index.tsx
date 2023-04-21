@@ -15,6 +15,7 @@ import { formatNumber } from "@/components/Detail/SizeSection";
 import { useRouter } from "next/router";
 import { AuthDialog } from "@/components/Home/Popup";
 const OrderItem = () => {
+  const [orderId, setOrderId] = useState(0);
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const [openNoti, setOpenNoti] = useState(false);
@@ -92,7 +93,7 @@ const OrderItem = () => {
           Số tiền
         </Grid>
       </Grid>
-      {carts.map((cart, index) => {
+      {carts?.map((cart, index) => {
         return (
           <Grid
             key={index}
@@ -239,16 +240,17 @@ const OrderItem = () => {
 
         <Stack width="50%" alignItems="center">
           <Typography fontSize="1.5rem" color="#9f1110">
-            {formatNumber(
-              carts
-                .reduce((accumulator, currentItem) => {
-                  const itemCost =
-                    parseFloat(currentItem.unitPrice) *
-                    parseInt(currentItem.quantity);
-                  return accumulator + itemCost;
-                }, 0)
-                .toString()
-            )}{" "}
+            {carts &&
+              formatNumber(
+                carts
+                  .reduce((accumulator, currentItem) => {
+                    const itemCost =
+                      parseFloat(currentItem.unitPrice) *
+                      parseInt(currentItem.quantity);
+                    return accumulator + itemCost;
+                  }, 0)
+                  .toString()
+              )}{" "}
             đ
           </Typography>
           <button
@@ -267,10 +269,16 @@ const OrderItem = () => {
                   setOpenNoti(true);
                   setChange(change + 1);
                   const query = { id: res?.data.orderId };
-                  router.push({
-                    pathname: "/payment",
-                    query,
-                  });
+                  if (payment == "Momo Pay") {
+                    router.push({
+                      pathname: `${process.env.PAYMENT_URL}/${query?.id}`,
+                    });
+                  } else {
+                    router.push({
+                      pathname: "/payment",
+                      query,
+                    });
+                  }
                 })
                 .catch((error) => {
                   setStatusAlert("error");
