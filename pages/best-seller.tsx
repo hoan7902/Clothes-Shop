@@ -44,6 +44,7 @@ export default function BestSeller({
             mx="auto"
             display="flex"
             flexDirection={{ xs: "column", md: "row" }}
+            justifyContent="space-between"
           >
             <Fillter categories={categories} />
             <Box

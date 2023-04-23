@@ -11,6 +11,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { count } from "console";
 import { type } from "os";
 import Link from "next/link";
+import { Grid } from "@mui/material";
 
 interface ResultProps {
   title: string;
@@ -73,43 +74,37 @@ const Result = ({ title, setTotal }: ResultProps) => {
         <SearchGroup />
         <SearchLimit />
       </Stack>
-      <Box
-        mt={"25px"}
-        mb={"25px"}
-        display="grid"
-        gridTemplateRows={"1fr"}
-        gridTemplateColumns={{
-          sm: "repeat(1, 1fr)",
-          md: "repeat(2, 1fr)",
-          lg: "repeat(3, 1fr)",
-          xl: "repeat(4, 1fr)",
-        }}
-        rowGap={{ xs: "35px", sm: "36px", md: "35px" }}
-        columnGap={{ xs: "5px", sm: "10px", md: "25px" }}
-        justifyContent={"center"}
-        justifyItems={"center"}
-      >
-        {allProducts &&
+      <Grid container mt={"25px"} mb={"25px"} width="100%">
+        {allProducts && allProducts.length !== 0 ? (
           allProducts.map((product, index) => {
             return (
-              <Link
-                key={index}
-                href={`${product.productId}`}
-                className="link"
-                style={{
-                  textDecoration: "none",
-                  color: "inherit",
-                }}
-              >
-                <ProductBox
-                  images={product.images ? product.images : [""]}
-                  name={product.name}
-                  price={product.minPrice + " đ"}
-                />
-              </Link>
+              <Grid item xs={12} sm={4} md={3}>
+                <Link
+                  key={index}
+                  href={`${product.productId}`}
+                  className="link"
+                  style={{
+                    textDecoration: "none",
+                    color: "inherit",
+                  }}
+                >
+                  <ProductBox
+                    images={product.images ? product.images : [""]}
+                    name={product.name}
+                    price={product.minPrice + " đ"}
+                  />
+                </Link>
+              </Grid>
             );
-          })}
-      </Box>
+          })
+        ) : (
+          <Stack justifyContent="center" alignItems="center" width="100%">
+            <img height="130px" alt="img" src="https://lep.vn/images/bg-empty-search.png"/>
+            <Typography fontWeight={600} fontSize="1.2rem" textTransform="uppercase">Không tìm thấy</Typography>
+            <Typography color="#444" fontSize="1rem">Vui lòng thử lại với sản phẩm khác.</Typography>
+          </Stack>
+        )}
+      </Grid>
     </>
   );
 };

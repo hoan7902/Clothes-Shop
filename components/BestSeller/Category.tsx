@@ -8,6 +8,7 @@ import {
   ListItemIcon,
   ListItem,
   IconButton,
+  Stack,
 } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
@@ -161,26 +162,15 @@ const Category = ({
           />
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <List
-            sx={{
-              width: "100%",
-              maxWidth: 360,
-              bgcolor: "background.paper",
-              display: "grid",
-              gridTemplateRows: "1fr",
-              gridTemplateColumns: {
-                xs: "repeat(3, 1fr)",
-                sm: "repeat(5, 1fr)",
-                md: "repeat(2, 1fr)",
-                xl: "repeat(2, 1fr)",
-              },
-            }}
+          <Stack 
+            sx={{ flexDirection: {xs: "row", md: "column"}}}
+            justifyContent="space-between"
+            flexWrap="wrap"
           >
             {itemList !== null &&
               itemList.map((category) => {
                 const labelId = `checkbox-list-${title}-${category.categoryId}`;
                 return (
-                  // <Tooltip disableHoverListener title={category.description}>
                   <ListItem key={parseInt(category.categoryId)} disablePadding>
                     <ListItemButton
                       role={undefined}
@@ -232,7 +222,7 @@ const Category = ({
                   </ListItem>
                 );
               })}
-          </List>
+          </Stack>
         </Collapse>
 
         {/* <Box display="flex" alignItems="center" gap={0.5}>

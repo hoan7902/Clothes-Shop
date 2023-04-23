@@ -74,7 +74,7 @@ const SliderMutipleImages: React.FC<Props> = ({
   return (
     <Slider {...settings} className={styles.container}>
       {products &&
-        products.map((product, index) => (
+        products.slice(0, 8).map((product, index) => (
           <div key={index} className={styles.item}>
             <CardImage
               src={product.images[0]}
