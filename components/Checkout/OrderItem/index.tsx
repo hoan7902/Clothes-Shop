@@ -271,7 +271,7 @@ const OrderItem = () => {
                   const query = { id: res?.data.orderId };
                   if (payment == "Momo Pay") {
                     router.push({
-                      pathname: `${process.env.PAYMENT_URL}/${query?.id}`,
+                      pathname: `${process.env.PAYMENT_URL}/${res?.data.orderId}`,
                     });
                   } else {
                     router.push({

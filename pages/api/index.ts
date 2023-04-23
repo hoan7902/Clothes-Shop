@@ -177,6 +177,7 @@ export const createAnOrder = async (params: any) => {
     const response = await API.post(`api/order/create`, params);
     return response;
   } catch (error) {
-    return (error as AxiosError).response;
+    // return (error as AxiosError).response;
+    throw error;
   }
 };
