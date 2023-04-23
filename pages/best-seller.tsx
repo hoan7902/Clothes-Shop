@@ -5,11 +5,14 @@ import SliderImage from "../components/Home/SliderImage";
 import { Box, Stack } from "@mui/material";
 import Breadcrumb from "@/components/BestSeller/Breadscrumb";
 import Fillter from "@/components/BestSeller/Fillter";
-import Result from "@/components/BestSeller/Result";
+// import Result from "@/components/BestSeller/Result";
 import Pagi from "@/components/BestSeller/Pagi";
 import { GetStaticProps } from "next";
 import { getCategories } from "./api";
 import { useState } from "react";
+import dynamic from 'next/dynamic'
+
+const Result = dynamic(() => import('@/components/BestSeller/Result'), { ssr: false })
 
 export type CategoryTyp = {
   categoryId: string;
