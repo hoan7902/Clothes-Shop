@@ -1,6 +1,6 @@
 import OrderCompleteItem from "@/components/Checkout/OrderCompleteItem";
 import Layout from "@/components/Layout";
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Alert, AlertColor, Box, Grid, Snackbar, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -12,6 +12,36 @@ export default function Checkout() {
   const { id } = router.query;
   const [listProduct, setListProduct] = useState([]);
   const [cost, setCost] = useState("");
+  const [openNoti, setOpenNoti] = useState(false);
+  const [statusAlert, setStatusAlert] = useState<AlertColor>("error");
+  const [messageAlert, setMessageAlert] = useState("Thiếu thông tin");
+
+  const hanldOpenNoti = () => {
+    setOpenNoti(true);
+  };
+
+  const handleCloseNoti = (
+    event: React.SyntheticEvent | Event | undefined = undefined,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenNoti(false);
+  };
+
+  useEffect(() => {
+    setOpenNoti(true);
+    setStatusAlert("success");
+    setMessageAlert("Đặt hàng thành công");
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleCloseNoti(undefined, "timeout");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [openNoti, handleCloseNoti]);
 
   const fetchData = async () => {
     if (id) {
@@ -20,9 +50,11 @@ export default function Checkout() {
       setCost(response?.data.data.cost);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, [id]);
+
   return (
     <>
       <Layout>
@@ -103,6 +135,19 @@ export default function Checkout() {
             </Stack>
           </Stack>
         </Box>
+        <Snackbar
+          open={openNoti}
+          autoHideDuration={null}
+          onClose={handleCloseNoti}
+        >
+          <Alert
+            onClose={handleCloseNoti}
+            severity={statusAlert}
+            sx={{ width: "100%" }}
+          >
+            {messageAlert}
+          </Alert>
+        </Snackbar>
       </Layout>
     </>
   );

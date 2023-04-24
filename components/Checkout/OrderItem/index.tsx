@@ -264,9 +264,6 @@ const OrderItem = () => {
                 products: carts,
               })
                 .then((res) => {
-                  setStatusAlert("success");
-                  setMessageAlert(res?.data.message);
-                  setOpenNoti(true);
                   setChange(change + 1);
                   const query = { id: res?.data.orderId };
                   if (payment == "Momo Pay") {

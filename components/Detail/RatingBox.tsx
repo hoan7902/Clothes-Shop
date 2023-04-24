@@ -32,6 +32,7 @@ export const StyledRating = styled(Rating)({
     color: "#9f1110",
   },
 });
+
 const RatingBox = ({
   productId,
   setChange,
@@ -46,6 +47,8 @@ const RatingBox = ({
 
   const { userChange } = useContext(UserContext);
   const [name, setName] = useState("");
+
+
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {

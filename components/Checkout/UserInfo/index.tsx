@@ -43,7 +43,7 @@ const UserInfo = ({
                 color="#444"
                 textTransform={"uppercase"}
               >
-                Địa chỉ người nhận
+                Địa chỉ
               </Typography>
             </Stack>
             <TextField
@@ -52,7 +52,7 @@ const UserInfo = ({
                 setAddress(event.target.value);
               }}
               id="outlined-basic"
-              label="Địa chỉ người nhận"
+              label="Address"
               variant="outlined"
               sx={{
                 "& .MuiOutlinedInput-root": {
@@ -91,7 +91,7 @@ const UserInfo = ({
                 color="#444"
                 textTransform={"uppercase"}
               >
-                Số điện thoại người nhận
+                số điện thoại
               </Typography>
             </Stack>
             <TextField

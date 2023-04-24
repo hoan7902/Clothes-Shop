@@ -14,7 +14,7 @@ import { StyledRating } from "./RatingBox";
 const RatingSection = ({ num, point }: { num: string; point: string }) => {
   return (
     <Box display="flex">
-      <StyledRating name="read-only" value={parseInt(point)} readOnly />
+      <StyledRating name="read-only" value={parseInt(point)} readOnly/>
       <Typography
         lineHeight={"22px"}
         fontWeight={"300px"}
