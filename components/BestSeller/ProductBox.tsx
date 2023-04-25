@@ -4,12 +4,11 @@ import { useState } from "react";
 import { formatNumber } from "../Detail/SizeSection";
 
 interface ProductBoxProps {
-  images: Array<string>;
+  image: string;
   name: string;
   price: string;
 }
-const ProductBox = ({ images, name, price }: ProductBoxProps) => {
-  const [image, setImage] = useState<string>(images[0]);
+const ProductBox = ({ image, name, price }: ProductBoxProps) => {
 
   return (
     <Box width="90%" mb="20px">
@@ -24,7 +23,7 @@ const ProductBox = ({ images, name, price }: ProductBoxProps) => {
           width={{ xs: "250px", sm: "400px", md: "100%" }}
           height={{ xs: "400px", sm: "500px", md: "330px" }}
           sx={{
-            backgroundImage: `url(${images[0]})`,
+            backgroundImage: `url(${image})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",

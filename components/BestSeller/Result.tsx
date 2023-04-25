@@ -91,7 +91,7 @@ const Result = ({ title, setTotal }: ResultProps) => {
                   }}
                 >
                   <ProductBox
-                    images={product.images ? product.images : [""]}
+                    image={product.images[0]}
                     name={product.name}
                     price={product.minPrice + " đ"}
                   />

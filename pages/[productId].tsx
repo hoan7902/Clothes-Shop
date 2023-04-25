@@ -73,7 +73,7 @@ const Items = () => {
 
   return (
     // <h2>hello</h2>
-    productInfo.sizes.length !== 0 ? (
+    productInfo.sizes.length !== 0 && (
       <UserContext.Provider value={{ userChange, handleClick }}>
         <Layout>
           <Box
@@ -125,8 +125,6 @@ const Items = () => {
           </Box>
         </Layout>
       </UserContext.Provider>
-    ) : (
-      <h2> vcl</h2>
     )
   );
 };
