@@ -1,38 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## FE_Clothes_Shop
+This is a front-end web application for an online clothes shop built using Next.js and TypeScript. It allows users to browse through various clothing items and add them to their shopping cart. The application also provides an option to checkout, where users can enter their shipping details and complete the purchase.
 
-## Getting Started
+### Demo
+You can watch a demo of the application on YouTube by following this link: https://www.youtube.com/watch?v=b1E8miKgfjQ&t=314s
 
-First, run the development server:
+### Installation and Setup
+To run this application locally, you'll need to follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Clone this repository using the following command: git clone https://github.com/hoan7902/FE_Clothes_Shop.git
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install the project dependencies: npm install
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+3. Start the development server: npm run dev
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+This will start the development server at http://localhost:3000.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Backend Repository
+This front-end application relies on a back-end API to manage the database and server-side functionality. The back-end API is implemented using PHP and can be found at the following repository: https://github.com/hoan7902/PHP_DB_SHOP
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To run the application, you will need to follow the instructions provided in the README.md file of the backend repository.
