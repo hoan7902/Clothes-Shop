@@ -1,7 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import Category from "./Category";
-import { useRouter } from "next/router";
-import { GetStaticProps } from "next";
 import { CategoryTyp } from "@/pages/best-seller";
 
 const Fillter = ({ categories }: { categories: CategoryTyp[] }) => {

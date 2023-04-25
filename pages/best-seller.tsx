@@ -5,14 +5,14 @@ import SliderImage from "../components/Home/SliderImage";
 import { Box, Stack } from "@mui/material";
 import Breadcrumb from "@/components/BestSeller/Breadscrumb";
 import Fillter from "@/components/BestSeller/Fillter";
-// import Result from "@/components/BestSeller/Result";
 import Pagi from "@/components/BestSeller/Pagi";
-import { GetStaticProps } from "next";
 import { getCategories } from "./api";
-import { useState } from "react";
-import dynamic from 'next/dynamic'
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 
-const Result = dynamic(() => import('@/components/BestSeller/Result'), { ssr: false })
+const Result = dynamic(() => import("@/components/BestSeller/Result"), {
+  ssr: false,
+});
 
 export type CategoryTyp = {
   categoryId: string;
@@ -20,12 +20,22 @@ export type CategoryTyp = {
   description: string;
 };
 
-export default function BestSeller({
-  categories,
-}: {
-  categories: CategoryTyp[];
-}) {
+export default function BestSeller() {
   const [totalPage, setTotalPage] = useState(0);
+  const [categories, setCategories] = useState<CategoryTyp[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getCategories();
+        setCategories(response?.data.categories);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <Layout>
@@ -66,23 +76,3 @@ export default function BestSeller({
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps<{
-  categories: CategoryTyp[];
-}> = async (context) => {
-  // .data.categories
-  let res: never[] = [];
-  await getCategories()
-    .then((response) => {
-      res = response?.data.categories;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-  return {
-    props: {
-      categories: res,
-    },
-  };
-};

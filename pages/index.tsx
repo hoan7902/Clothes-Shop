@@ -6,7 +6,6 @@ import SliderImage from "../components/Home/SliderImage";
 import { Box } from "@mui/material";
 import CollectionSlide from "@/components/Home/CollectionSlide";
 import LocationBanner from "@/components/Home/LocationBanner";
-import { GetStaticProps } from "next";
 
 export default function Home() {
   return (

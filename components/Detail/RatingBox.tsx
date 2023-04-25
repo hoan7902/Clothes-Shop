@@ -48,7 +48,6 @@ const RatingBox = ({
   const { userChange } = useContext(UserContext);
   const [name, setName] = useState("");
 
-
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {

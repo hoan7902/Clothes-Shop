@@ -19,6 +19,7 @@ const SizeSection = ({
   sizes: Array<{ price: string; quantity: string; sizeName: string }>;
 }) => {
   const sizeList = sizes.map((size) => size.sizeName);
+  console.log("check sizes: ", sizes);
   return (
     <Box>
       <Typography
