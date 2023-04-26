@@ -1,5 +1,6 @@
 import { getProduct } from "@/pages/api";
 import { Grid, Stack, Typography } from "@mui/material";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
@@ -33,30 +34,32 @@ const PersonalOrderCompleteItem: React.FC<Props> = ({
     <>
       <Grid container padding="25px" borderBottom="0.5px solid #444" p="20px">
         <Grid item md={6} xs={12}>
-          <Stack flexDirection="row">
-            <div className={styles.wrapImage}>
-              <img
-                width="80px"
-                height="120px"
-                style={{ objectFit: "cover", objectPosition: "center" }}
-                src={image}
-              />
-            </div>
-            <Stack ml="30px">
-              <Typography
-                fontSize="1.25rem"
-                fontWeight="100"
-                lineHeight="1.75rem"
-                color="#444"
-                marginBottom="12px"
-              >
-                {name}
-              </Typography>
-              <Typography fontSize="1.1rem" fontWeight="400">
-                Size {size}
-              </Typography>
+          <Link href={`/${id}`} className={styles.link}>
+            <Stack flexDirection="row">
+              <div className={styles.wrapImage}>
+                <img
+                  width="80px"
+                  height="120px"
+                  style={{ objectFit: "cover", objectPosition: "center" }}
+                  src={image}
+                />
+              </div>
+              <Stack ml="30px">
+                <Typography
+                  fontSize="1.25rem"
+                  fontWeight="100"
+                  lineHeight="1.75rem"
+                  color="#444"
+                  marginBottom="12px"
+                >
+                  {name}
+                </Typography>
+                <Typography fontSize="1.1rem" fontWeight="400">
+                  Size {size}
+                </Typography>
+              </Stack>
             </Stack>
-          </Stack>
+          </Link>
         </Grid>
 
         <Grid item xs={12} md={2}>

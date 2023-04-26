@@ -8,11 +8,7 @@ import Fillter from "@/components/BestSeller/Fillter";
 import Pagi from "@/components/BestSeller/Pagi";
 import { getCategories } from "./api";
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-
-const Result = dynamic(() => import("@/components/BestSeller/Result"), {
-  ssr: false,
-});
+import Result from "@/components/BestSeller/Result";
 
 export type CategoryTyp = {
   categoryId: string;

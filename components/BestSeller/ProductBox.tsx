@@ -27,10 +27,10 @@ const ProductBox = ({ image, name, price }: ProductBoxProps) => {
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            transition: "all 0.3s ease",
-            "&:hover": {
-              transform: "scale(1.3)",
-            },
+            transition: "all 0.2s ease",
+            // "&:hover": {
+            //   transform: "scale(1.3)",
+            // },
           }}
           style={{}}
         ></Box>

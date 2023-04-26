@@ -1,3 +1,8 @@
+.link {
+  text-decoration: none;
+  color: #444;
+}
+
 .textHeader {
   color: #444;
   font-size: 1.2rem;

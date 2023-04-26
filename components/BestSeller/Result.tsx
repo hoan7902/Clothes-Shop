@@ -8,12 +8,9 @@ import { useRouter } from "next/router";
 import Title from "./Title";
 import { getProducts } from "@/pages/api";
 import { ReactNode, useEffect, useState } from "react";
-import { count } from "console";
-import { type } from "os";
 import Link from "next/link";
 import { Grid } from "@mui/material";
-import dynamic from "next/dynamic";
-const ProductBox = dynamic(() => import("./ProductBox"));
+import ProductBox from "./ProductBox";
 
 interface ResultProps {
   title: string;
