@@ -1,4 +1,4 @@
-## FE_Clothes_Shop
+## Clothes Shop
 
 This is a front-end web application for an online clothes shop built using Next.js and TypeScript. It allows users to browse through various clothing items and add them to their shopping cart. The application also provides an option to checkout, where users can enter their shipping details and complete the purchase.
 
