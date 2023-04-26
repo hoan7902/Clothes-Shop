@@ -9,7 +9,6 @@ interface ProductBoxProps {
   price: string;
 }
 const ProductBox = ({ image, name, price }: ProductBoxProps) => {
-
   return (
     <Box width="90%" mb="20px">
       <Box
@@ -28,9 +27,9 @@ const ProductBox = ({ image, name, price }: ProductBoxProps) => {
             backgroundSize: "cover",
             backgroundPosition: "center",
             transition: "all 0.2s ease",
-            // "&:hover": {
-            //   transform: "scale(1.3)",
-            // },
+            "&:hover": {
+              transform: "scale(1.3)",
+            },
           }}
           style={{}}
         ></Box>

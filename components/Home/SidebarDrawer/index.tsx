@@ -3,6 +3,8 @@ import { Typography, Stack, Box, IconButton } from "@mui/material";
 import styles from "./styles.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 import Link from "next/link";
+import logoImage from "../../../assets/image/logo2.png";
+import Image from "next/image";
 
 interface SidebarDrawerProps {
   openMobile: boolean;
@@ -27,12 +29,7 @@ const SidebarDrawer = ({
           alignItems="center"
         >
           <Box pl="20px" py="10px">
-            <img
-              src="https://lep.vn/icons/page-logo.svg"
-              alt="Lep logo"
-              width={38}
-              height={52}
-            />
+            <Image src={logoImage} alt="Lep logo" height={42} />
           </Box>
           <IconButton onClick={() => setOpenMobile(!openMobile)}>
             <CloseIcon />

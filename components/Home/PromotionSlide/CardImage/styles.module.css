@@ -1,20 +1,20 @@
 .wrapper__item {
-    position: relative;
-    color: #fff;
-    text-align: center;
-    width: 210px;
-    /* height: 425px; */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  width: 210px;
+  /* height: 425px; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .image {
-    width: 80%;
-    height: 370px;
-    object-fit: cover;
+  width: 80%;
+  height: 370px;
+  object-fit: cover;
 }
 
 .name {

@@ -1,5 +1,5 @@
 .container {
-    width: 100%;
+  width: 100%;
 }
 
 .item {
@@ -166,17 +166,17 @@
     color: grey !important;
   }
 
-.arrowSlickBefore {
+  .arrowSlickBefore {
     position: absolute;
     left: 0px !important;
     top: 180px !important;
-}
+  }
 
   .arrowSlickNext {
     position: absolute;
     left: 0px;
     top: 180px !important;
-}
+  }
 
   .arrowSlickBefore {
     position: absolute;

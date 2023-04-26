@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   //     router.push("/");
   //   }
   // }, [reload]);
-  
+
   return (
     <ReloadContext.Provider value={{ reload, setReload }}>
       <Component {...pageProps} />

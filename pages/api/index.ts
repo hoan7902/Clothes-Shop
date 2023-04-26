@@ -111,7 +111,7 @@ export const getProducts = async (params: any) => {
 
 export const getProduct = async (productId: any) => {
   try {
-    console.log("check id inside: ", productId)
+    console.log("check id inside: ", productId);
     const response = await API.get(`/api/product/${productId}`);
     return response;
   } catch (error) {

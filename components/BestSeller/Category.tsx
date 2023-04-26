@@ -162,8 +162,8 @@ const Category = ({
           />
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <Stack 
-            sx={{ flexDirection: {xs: "row", md: "column"}}}
+          <Stack
+            sx={{ flexDirection: { xs: "row", md: "column" } }}
             justifyContent="space-between"
             flexWrap="wrap"
           >
